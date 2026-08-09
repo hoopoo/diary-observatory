@@ -1,0 +1,219 @@
+{/*
+  Do More Sources Make Facts Simpler?
+  / 資料が多いほど、事実は単純になるのか
+  ルール: Source count ≠ 信頼度 /
+  架空SNS・番組・AI回答を作らない /
+  荷風 Partial / 西村未登録層を崩さない /
+  Fact · Observation · Interpretation を区別する /
+  AI回答をHistorical Fact一次Sourceにしない
+*/}
+
+## 01　資料が一つしかない世界
+
+古い日記を読むと、資料が少ないことが問題になる。
+
+版が分からない。  
+ページが分からない。  
+現物を確認できない。  
+日付はあるが、外部資料と照合できない。
+
+荷風1918-01-01 Entryは、その空白の問題をそのまま残している。
+
+関連：
+[1918年1月1日 · 永井荷風](/entries/1918-01-01-kafu-nagai)
+
+<KafuScarcityCase />
+
+<ScarcityModel />
+
+<Note kind="observation">
+Scarcity creates gaps. 資料の不足は、空白を生む。これは絶対法則ではなく、観測である。
+</Note>
+
+## 02　資料が増えると何が起きるか
+
+現代になると、記録装置は増える。
+
+電話。メール。出版。テレビ。Web。SNS。写真。動画。位置情報。データベース。クラウド。
+
+一つの出来事が、複数の場所に痕跡を残す。これは大きな利点である。
+
+しかし、資料が増えると、同じ出来事の別バージョン、別の編集、後年の訂正、自己演出、転載、削除、断片化が同時に生まれる。
+
+<ConceptQuote
+  en={"More records can mean\nmore versions of the same event."}
+  ja="記録が増えることは、同じ出来事の版が増えることでもある。"
+/>
+
+<AbundanceModel />
+
+<Note kind="observation">
+Abundance creates collisions. 資料の過剰は、衝突を生む。これもまた絶対法則ではない。
+</Note>
+
+## 03　荷風1918――空白の問題
+
+<ConceptQuote
+  en={"Kafū 1918:\nthe problem of missing links"}
+  ja="荷風1918：資料経路の空白"
+/>
+
+荷風の一日では、問題は主に「資料が何を言っているか」以前にある。
+
+どの版か。  
+どのページか。  
+どの個体か。  
+日付の境界はどこか。
+
+つまり、事実へ向かう一本道の途中がまだ欠けている。
+
+<Note kind="fact">
+荷風の一日そのものが不正確だと断定しない。ここでの問題は current traceability である。Repository上の Provenance は Partial。
+</Note>
+
+## 04　西村2011――複線の問題
+
+関連：
+[2011年5月2日 · 西村賢太](/entries/2011-05-02-kenji-nishimura) ·
+[Two Days, Two Provenances](/compare/two-days-two-provenances)
+
+西村賢太の時代になると、一日の周囲に存在しうる資料形式が増える。
+
+日記。出版物。私小説。編集者。出版社。テレビ。都市の施設。交通。インタビュー。
+
+しかし、それらはすべて同じ種類の証拠ではない。
+
+<NishimuraAbundanceCase />
+
+<Note kind="fact">
+表示している SourceLayer は Repository に登録済みのものだけ。未登録のテレビ・SNS・私小説キャプチャは作らない。
+</Note>
+
+## 05　同じ人が、違う場所で違う自分を語る
+
+本人が語ったことだから、すべて同じ Fact になるわけではない。
+
+人は媒体によって、違う自分を提示する。誰に向けて書くか。編集されるか。公開されるか。時間が経っているか。作品化されているか。
+
+<SelfRecordMatrix />
+
+<LiteraryEvidenceWarning />
+
+## 06　テレビは、事実を増やすのか
+
+テレビには映像がある。声がある。日時がある。出演者がいる。だから、日記より正確に見えることがある。
+
+しかしテレビも編集される。撮影時間と放送時間は違う。収録順と放送順が違う。カットがある。演出がある。本人も「テレビに出演する自分」を演じる。
+
+<ConceptQuote
+  en={"Recorded does not mean unedited."}
+  ja="記録されていることと、無編集であることは同じではない。"
+/>
+
+<MediaEvidencePanel />
+
+## 07　Webは、記録を保存するのか
+
+Webは大量の記録を残す。同時に、大量の記録を消す。
+
+URLが変わる。サイトが閉じる。記事が修正される。画像が消える。ドメインが失効する。検索結果から消える。キャッシュだけが残る。
+
+Web上にあったという事実と、現在アクセスできることは同じではない。
+
+<MutableSourcePanel />
+
+## 08　SNSは、日記なのか
+
+SNSには、日記に似た特徴がある。日付。本人の記述。食事。仕事。感情。場所。人間関係。
+
+しかし、SNSは私的日記ではない。読者がいる。反応がある。アルゴリズムがある。削除できる。編集できる。宣伝にも使われる。他者との会話が混ざる。
+
+<SocialSourceConcept />
+
+## 09　スクリーンショットは証拠なのか
+
+スクリーンショットは、消えた投稿を残すことがある。一方で、URL、投稿者、時刻、前後の投稿、編集前後、加工、取得者、取得日時が分からないことも多い。
+
+<ScreenshotEvidencePanel />
+
+## 10　AIが資料をもう一度書き直す
+
+AIは、新しい一次資料を作らなくても、既存資料の見え方を変える。長い記事を要約する。複数資料を統合する。人物の経歴を説明する。検索結果をまとめる。
+
+しかし、AIの文章だけを見ると、どの資料が使われたか、どこで解釈が加わったか、何が省略されたかが見えにくくなることがある。
+
+<AISourceOrInterface />
+
+<AICompressionDiagram />
+
+<Note kind="interpretation">
+AI can shorten the text while lengthening the provenance problem. 短い説明と、根拠の短さを混同しない。
+</Note>
+
+## 11　資料の量ではなく、経路を見る
+
+SOURCE COUNT（1 / 5 / 20 / 100）ではなく、TRACEABILITY を観測する。
+
+Source identified?  
+Copy examined?  
+Page known?  
+Capture available?  
+Claim mapped?  
+Conflict visible?  
+Unknown visible?  
+Interpretation separated?
+
+<ConceptQuote
+  en={"Count sources if useful.\nTrace them if it matters."}
+  ja="資料数を数えることはできる。しかし重要なのは、その経路をたどれることである。"
+/>
+
+<EvidenceQuantityTraceabilityMatrix />
+
+<FalseAbundanceDiagram />
+
+## 12　事実は、一本道ではない
+
+事実には、一本道で到達できる場合がある。日記。版。ページ。記述。Fact。
+
+しかし、別の事実は複数資料の間にある。本人の記憶。出版社。映像。新聞。私小説。SNS。削除されたページ。スクリーンショット。AIの要約。
+
+Diary Observatoryが目指すのは、すべてを一つの答えへ潰すことではない。
+
+どの道が残っているか。  
+どこで枝分かれするか。  
+どこが途切れているか。  
+どこで資料同士が衝突しているか。
+
+その形を残すことである。
+
+<ConceptQuote
+  en={"Not more facts for their own sake.\nPaths back to evidence."}
+  ja="事実を増やすのではない。事実へ戻る道を残す。"
+/>
+
+<EvidenceEcology />
+
+<HistoricalSourceStack />
+
+## 付記　壊れやすさと、消えないように見える消失
+
+<ArchiveFragilityPanel />
+
+物理的な消失は見える。文脈の消失は、完成した資料のように見えることがある。
+
+Screenshot without thread。Quote without page。Clip without full program。AI answer without source mapping。
+
+<ProvenanceFailureModes />
+
+<ProvenanceCaseStudies />
+
+<TwoDaysProvenanceCta />
+
+<ArticleEvidenceBasis />
+
+<FactObservationInterpretationBlock
+  fact="荷風1918と西村2011の現在のProvenance状態、および登録済みSourceLayerはRepositoryから取得できる。"
+  observation="資料の増加は、明確化と経路の増殖・衝突の両方を起こしうる。"
+  interpretation="資料数そのものより、traceability・independence・conflict / Unknown の可視性を観測する方が、Diary Observatoryの方法に沿う。"
+/>

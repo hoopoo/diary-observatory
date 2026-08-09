@@ -1,26 +1,260 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* Diary Observatory — quiet paper archive with dark mode.
+   White / ivory / ash / ink, with a muted rust accent. */
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+:root {
+  --bg: #f7f5f0;
+  --bg-raised: #fffcf7;
+  --surface: #f0ebe3;
+  --border: #ddd6cb;
+  --border-soft: #e8e2d8;
+  --text: #1c1b19;
+  --text-soft: #4a4742;
+  --text-faint: #7a756c;
+  --accent: #8b4a3c;
+  --accent-soft: rgba(139, 74, 60, 0.1);
+  --paper-shadow: rgba(28, 27, 25, 0.04);
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --bg: #121110;
+    --bg-raised: #1a1917;
+    --surface: #22201d;
+    --border: #3a3631;
+    --border-soft: #2c2925;
+    --text: #e8e4dc;
+    --text-soft: #b8b2a6;
+    --text-faint: #8a8478;
+    --accent: #c47868;
+    --accent-soft: rgba(196, 120, 104, 0.14);
+    --paper-shadow: rgba(0, 0, 0, 0.25);
   }
 }
 
+@theme inline {
+  --color-bg: var(--bg);
+  --color-bg-raised: var(--bg-raised);
+  --color-surface: var(--surface);
+  --color-border: var(--border);
+  --color-border-soft: var(--border-soft);
+  --color-text: var(--text);
+  --color-text-soft: var(--text-soft);
+  --color-text-faint: var(--text-faint);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --font-serif: var(--font-instrument);
+  --font-sans: var(--font-noto-sans);
+  --font-jp: var(--font-noto-serif);
+}
+
+* {
+  border-color: var(--border-soft);
+}
+
+html {
+  color-scheme: light dark;
+  scroll-behavior: smooth;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background:
+    radial-gradient(ellipse 70% 45% at 8% -8%, rgba(139, 74, 60, 0.05), transparent 50%),
+    radial-gradient(ellipse 50% 35% at 92% 0%, rgba(90, 90, 80, 0.04), transparent 45%),
+    var(--bg);
+  color: var(--text);
+  font-family: var(--font-sans), "Hiragino Sans", "Yu Gothic", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  letter-spacing: 0.01em;
+  line-height: 1.8;
+}
+
+::selection {
+  background: var(--accent-soft);
+}
+
+.editorial {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  letter-spacing: 0.01em;
+  font-weight: 400;
+}
+
+.jp-serif {
+  font-family: var(--font-jp), "Hiragino Mincho ProN", "Yu Mincho", serif;
+  letter-spacing: 0.04em;
+  line-height: 1.95;
+}
+
+.jp-heading {
+  font-family: var(--font-jp), "Hiragino Mincho ProN", "Yu Mincho", serif;
+  letter-spacing: 0.05em;
+  line-height: 1.7;
+  color: var(--accent);
+}
+
+.jp-body {
+  font-family: var(--font-jp), "Hiragino Mincho ProN", "Yu Mincho", serif;
+  letter-spacing: 0.04em;
+  line-height: 2;
+  color: var(--text-soft);
+}
+
+.label {
+  font-size: 0.6875rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  font-weight: 500;
+}
+
+.prose-quiet {
+  color: var(--text-soft);
+  line-height: 1.9;
+  font-size: 0.95rem;
+}
+
+.prose-quiet p + p {
+  margin-top: 1rem;
+}
+
+.prose-diary {
+  color: var(--text-soft);
+  font-family: var(--font-jp), "Hiragino Mincho ProN", "Yu Mincho", serif;
+  font-size: 1.05rem;
+  letter-spacing: 0.04em;
+  line-height: 2.15;
+  max-width: 38rem;
+}
+
+.prose-diary h2 {
+  font-family: var(--font-jp), "Hiragino Mincho ProN", "Yu Mincho", serif;
+  color: var(--text);
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+  margin-top: 3.5rem;
+  margin-bottom: 1.35rem;
+  line-height: 1.65;
+  padding-top: 0.5rem;
+  border-top: 1px solid var(--border-soft);
+}
+
+.prose-diary h2:first-child {
+  margin-top: 2rem;
+  border-top: 0;
+  padding-top: 0;
+}
+
+.prose-diary h3 {
+  font-family: var(--font-sans), sans-serif;
+  color: var(--text);
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+}
+
+.prose-diary p {
+  margin-bottom: 1.25rem;
+  max-width: 36rem;
+}
+
+.prose-diary blockquote {
+  border-left: 1px solid var(--accent);
+  padding: 0.75rem 0 0.75rem 1rem;
+  margin: 1.75rem 0;
+  color: var(--text);
+  background: var(--accent-soft);
+  font-family: var(--font-jp), "Hiragino Mincho ProN", "Yu Mincho", serif;
+}
+
+.prose-diary hr {
+  border: 0;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+.prose-diary aside,
+.prose-diary .label {
+  font-family: var(--font-sans), "Hiragino Sans", "Yu Gothic", sans-serif;
+  letter-spacing: 0.02em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.focus-ring:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.paper-panel {
+  background: var(--bg-raised);
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 0 var(--paper-shadow);
+}
+
+.nav-active {
+  color: var(--text);
+  box-shadow: inset 0 -1px 0 var(--text);
+}
+
+.filter-chip {
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text-faint);
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  padding: 0.35rem 0.7rem;
+  transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.filter-chip:hover {
+  color: var(--text);
+  border-color: var(--text-faint);
+}
+
+.filter-chip[data-active="true"] {
+  color: var(--text);
+  border-color: var(--text);
+  background: var(--accent-soft);
+}
+
+@keyframes fade-rise {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-rise {
+  animation: fade-rise 0.8s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .fade-rise {
+    animation: none !important;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 999px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
 }

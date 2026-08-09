@@ -1,0 +1,157 @@
+import type { ObservationAxis } from "@/lib/types";
+
+export const observationAxes: ObservationAxis[] = [
+  {
+    id: "diary-form",
+    label: "Diary Form",
+    labelJa: "日記形式",
+    question: "What makes a self-record become a diary?",
+    questionJa: "自己記録は、どこから日記になるのか。",
+    href: "/observations/is-social-media-a-diary",
+  },
+  {
+    id: "evidence",
+    label: "Evidence",
+    labelJa: "証拠",
+    question:
+      "What does a screenshot prove, and what does it leave unverified?",
+    questionJa:
+      "スクリーンショットは何を証明し、何を検証できないまま残すのか。",
+    href: "/observations/screenshot-is-not-provenance",
+  },
+  {
+    id: "digital-archive",
+    label: "Digital Archive",
+    labelJa: "デジタル資料史",
+    question:
+      "How does a web source change state, disappear, and leave fragments?",
+    questionJa:
+      "Web資料はどのように状態を変え、消え、断片として残るのか。",
+    href: "/observations/link-rot-is-archive-history",
+  },
+  {
+    id: "provenance",
+    label: "Provenance",
+    labelJa: "根拠経路",
+    question:
+      "How does a fact survive from an event to a source?",
+    questionJa: "出来事は、どのような資料経路を通って後世の事実になるのか。",
+    href: "/observations/more-sources-less-certainty",
+  },
+  {
+    id: "maintenance",
+    label: "Maintenance",
+    labelJa: "生活維持",
+    question:
+      "What work had to happen before writing could begin?",
+    questionJa: "書き始める前に、どのような仕事が必要だったのか。",
+    href: "/observations/maintenance-is-not-background",
+  },
+  {
+    id: "performance",
+    label: "Performance",
+    labelJa: "上演",
+    question:
+      "What work happened before the audience saw the result?",
+    questionJa: "観客が成果を見る前に、どのような仕事が行われていたのか。",
+    href: "/observations/backstage-is-not-recorded",
+  },
+  {
+    id: "housing",
+    label: "Housing",
+    labelJa: "住居",
+    question:
+      "Which rooms supported a life, and which rooms were allowed to survive?",
+    questionJa: "どの部屋が生活を支え、どの部屋が残ることを許されたのか。",
+    href: "/observations/the-house-that-remained",
+  },
+  {
+    id: "people",
+    label: "People",
+    labelJa: "人",
+    question: "Is this person still alive?",
+    questionJa: "人は今も生きているか",
+  },
+  {
+    id: "places",
+    label: "Places",
+    labelJa: "場所",
+    question: "Do the shop, building, or street still remain?",
+    questionJa: "店、建物、街は今も残っているか",
+  },
+  {
+    id: "body",
+    label: "Body",
+    labelJa: "身体",
+    question: "Illness, aging, appetite, dependence, fatigue",
+    questionJa: "病気、老い、食欲、依存、疲労",
+  },
+  {
+    id: "work",
+    label: "Work",
+    labelJa: "仕事",
+    question: "Work and livelihood before and after becoming a writer",
+    questionJa: "作家になる前後の仕事と生活",
+    href: "/observations/before-the-platform-small-press",
+  },
+  {
+    id: "media",
+    label: "Media",
+    labelJa: "メディア",
+    question: "Newspapers, magazines, television, blogs, social media",
+    questionJa: "新聞、雑誌、テレビ、ブログ、SNS",
+    href: "/observations/before-the-platform-small-press",
+  },
+  {
+    id: "editing",
+    label: "Editing",
+    labelJa: "編集",
+    question: "Who selects, revises, positions, and distributes the text?",
+    questionJa: "誰が文章を選び、直し、位置づけ、届けるのか。",
+    href: "/observations/where-did-the-editor-go",
+  },
+  {
+    id: "rejection",
+    label: "Rejection",
+    labelJa: "不採用",
+    question: "What happened to writing that did not enter the world?",
+    questionJa: "世界へ入らなかった文章は、どうなったのか。",
+    href: "/observations/the-manuscripts-that-were-not-chosen",
+  },
+  {
+    id: "food-drink",
+    label: "Food & Drink",
+    labelJa: "食事と酒",
+    question: "Meals, alcohol, prices, and places of eating",
+    questionJa: "食事、酒、価格、店",
+  },
+  {
+    id: "money",
+    label: "Money",
+    labelJa: "金額",
+    question: "Manuscript fees, royalties, debt, and prices",
+    questionJa: "原稿料、印税、借金、物価",
+    href: "/observations/the-price-of-an-ordinary-day",
+  },
+  {
+    id: "movement",
+    label: "Movement",
+    labelJa: "移動",
+    question: "Walking, trains, taxis, and routes through the city",
+    questionJa: "散歩、電車、タクシー、移動経路",
+  },
+  {
+    id: "war-disaster",
+    label: "War & Disaster",
+    labelJa: "戦争と災害",
+    question: "War, air raids, epidemics, and disasters",
+    questionJa: "戦争、空襲、疫病、災害",
+  },
+  {
+    id: "lived-written-fictionalized",
+    label: "Lived / Written / Fictionalized",
+    labelJa: "実生活／日記／文学化",
+    question: "What was lived, written in a diary, and reshaped as literature",
+    questionJa: "実際に生きたこと、日記に書いたこと、文学へ変えたこと",
+  },
+];

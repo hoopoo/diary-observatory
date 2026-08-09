@@ -1,0 +1,230 @@
+{/*
+  Link Rot Is Also Archive History
+  / リンク切れもまた資料史である
+  ルール: 404 ≠ never existed /
+  Soft 404 を考慮 / URL ≠ Source Identity /
+  架空URL・Archive・contentHashを作らない /
+  リンク切れでFactをFalseにしない /
+  Truth ≠ Traceability /
+  Fact · Observation · Interpretation を区別する
+*/}
+
+## 01　404は「何もない」ではない
+
+リンクを開いて404が返る。
+
+通常のサイト運営では、それは修正すべきエラーである。
+
+しかし資料研究では、もう一つの意味を持つ。
+
+以前そこに何かが存在した。  
+ある時点で参照した。  
+その後、現在のURLでは到達できなくなった。
+
+つまり404は、資料の存在履歴の一部である。
+
+<ConceptQuote
+  en={"404 does not mean\nthe source never existed."}
+  ja="404は、その資料が存在しなかったことを意味しない。"
+/>
+
+<Note kind="observation">
+404は技術障害であると同時に、資料状態変化の証拠にもなりうる。これは真偽判定そのものではない。
+</Note>
+
+## 02　Web資料には状態がある
+
+紙の本は、同じ版であれば比較的固定されている。
+
+Webページは、同じURLでも内容が変わることがある。
+
+タイトルが変わる。  
+本文が修正される。  
+日付が更新される。  
+画像が差し替わる。  
+リンクが追加される。  
+記事全体が別のページへ置き換わる。
+
+Sourceの存在確認と、内容同一性を分ける必要がある。
+
+<SourceStateModel />
+
+<SourceStateTimeline />
+
+## 03　URLと資料は同じものではない
+
+URLは資料の住所である。資料そのものではない。
+
+引っ越すことがある。  
+転送されることがある。  
+ドメインが変わることがある。  
+同じURLへ、別の内容が置かれることもある。
+
+Diary Observatoryは、Source IDをURLから独立させている。
+
+<ConceptQuote
+  en={"Stable Source ID\nMutable URL"}
+  ja="資料IDは固定する。URLは変化しうる。"
+/>
+
+<UrlHistoryPanel />
+
+<AvailabilityIdentityPanel />
+
+## 04　記事は更新されても同じ記事なのか
+
+Web記事には、「更新」という難しさがある。
+
+誤字修正。  
+数字の修正。  
+追記。  
+タイトル変更。  
+段落削除。  
+大幅な書き換え。
+
+すべてがUpdateとして表示される可能性がある。
+
+しかしProvenance上は、変更の程度が重要になる。
+
+<SourceVersionComparison />
+
+<Note kind="observation">
+比較していない場合、changeTypeはunknownとする。contentHashを捏造しない。長文diffは公開しない。
+</Note>
+
+## 05　リダイレクトは保存か、移転か
+
+301や302で別URLへ転送されれば、リンクは「生きている」ように見える。
+
+しかし転送先が、同じ記事・カテゴリトップ・企業トップ・全く別の記事のどれかで意味は違う。
+
+<RedirectStatusPanel />
+
+<Soft404Warning />
+
+<Note kind="observation">
+HTTP statusだけで資料生存を判断しない。Soft 404を考慮する。Redirect先を同一Sourceと自動判定しない。
+</Note>
+
+## 06　消されたページはどこへ行くのか
+
+ページが消えても、痕跡は複数箇所へ残ることがある。
+
+Web archive。検索インデックス。他記事の引用。SNSの共有。スクリーンショット。RSS。メール。ブラウザキャッシュ。AI検索の要約。
+
+ただし、これらは元ページそのものではない。
+
+<SurvivalFragmentPanel />
+
+<ConceptQuote
+  en={"A surviving fragment\nis evidence of the source,\nnot automatically the source itself."}
+  ja="残った断片は、元資料が存在した証拠にはなる。しかし、元資料そのものとは限らない。"
+/>
+
+## 07　Internet Archiveのような保存は何を残すか
+
+Webアーカイブは、失われたページへアクセスする重要な手段になる。
+
+しかし、保存されたページも完全とは限らない。
+
+画像がない。CSSがない。動画が再生できない。外部リンクが死んでいる。ログイン後の内容は取れていない。動的要素が保存されていない。保存日時と公開日時が違う。
+
+<ArchiveCapturePanel />
+
+<Note kind="fact">
+Archive copyは独立した一次証言Sourceではない。preservation copyとして扱い、corroboration countへ単純加算しない。
+</Note>
+
+## 08　スクリーンショットだけが残る
+
+スクリーンショットには、視覚的な説得力がある。
+
+しかし、画面の外側が存在しない。  
+URLバーがない。時刻が切れている。投稿者名だけ見える。前後の会話がない。画像編集の履歴がない。
+
+「保存されている」と「検証可能である」は違う。
+
+<ScreenshotProvenanceLadder />
+
+## 09　SNSではアカウントごと消える
+
+SNSでは、一つの記事ではなく投稿者のアカウント全体が消えることがある。
+
+投稿削除。アカウント削除。凍結。サービス終了。ユーザー名変更。非公開化。プラットフォーム移行。
+
+このとき、個々の投稿URLだけでは資料履歴を理解できない。
+
+<SocialAccountStatePanel />
+
+<Note kind="observation">
+アカウント削除等を推測しない。実観測がある場合のみ記録する。個人情報を不必要に収集しない。
+</Note>
+
+## 10　検索結果だけに残る文章
+
+元ページが消えても、検索結果のタイトルや断片がしばらく残ることがある。
+
+しかし検索スニペットは、元記事の完全なコピーではない。
+
+検索エンジンが生成した断片。古いインデックス。別のキャッシュ。動的生成。何を元に表示しているか分からない場合もある。
+
+<SearchSnippetPanel />
+
+<CitationGhostPanel />
+
+## 11　AI要約だけが資料の痕跡を持つとき
+
+さらに新しい問題がある。
+
+元記事が検索時には存在していた。  
+AIがその内容を要約した。  
+その後、元記事が消えた。  
+残ったのは、AI回答の文章だけ。
+
+この場合、AI回答は元資料の完全な代替にはならない。どの文章が引用で、どの文章が要約で、どの部分が推論か分からない可能性がある。
+
+<ConceptQuote
+  en={"AI Trace Without Source"}
+  ja="元資料を失ったAI痕跡"
+/>
+
+<AITraceWithoutSource />
+
+<SyntheticPersistenceDiagram />
+
+<MutationChain />
+
+## 12　リンク切れを、削除せず記録する
+
+Diary Observatoryのルールとしてまとめる。
+
+悪い処理：リンクが死んだ → Sourceから削除 → Factだけ残る。
+
+良い処理：リンクが死んだ → Sourceを残す → SourceStateEvent追加 → Last known URL保存 → Archive確認 → Survival fragments確認 → Factへの依存関係維持 → Provenance status更新。
+
+<ConceptQuote
+  en={"Do not delete a dead link from history.\nRecord its death."}
+  ja="死んだリンクを、歴史から削除しない。その死を記録する。"
+/>
+
+<SourceStateMachine />
+
+<LinkRotRegister />
+
+<SourceMaintenanceQueue />
+
+<SourceStateImpactPanel />
+
+<UniqueSourceRiskPanel />
+
+<SourceDependencyCollapse />
+
+<LinkRotRepositoryAudit />
+
+<LinkRotCaseStudies />
+
+<FactObservationInterpretationBlock
+  fact="Repository上のSourceLinkCheckは現時点でnot-checkedが大半であり、SourceStateEvent / SourceUrlRecord / ArchiveCapture / SurvivalFragment の実インスタンスはまだ登録されていない。状態変化が確認済みの公開Sourceケーススタディも未索引である。"
+  observation="Web URLと内容は変わりうる。Archivesは部分的表象を保存し、ページは消えても引用・スニペット・スクリーンショット・AI痕跡として断片が残りうる。リンク切れは技術障害であると同時に、資料状態変化の証拠にもなりうる。"
+  interpretation="Link rot is also archive history. The disappearance of a source is itself an archival event. Synthetic persistenceは正確な保存を意味せず、Citation GhostやAI Traceを元資料そのものと混同しない。"
+/>

@@ -1,0 +1,220 @@
+{/*
+  A Screenshot Is Not Provenance
+  / スクリーンショットだけが残る
+  ルール: Screenshotを否定しない /
+  自動でVerified Factへ昇格しない /
+  display name ≠ identity /
+  relative timeを絶対時刻にしない /
+  crop ≠ fraud /
+  架空Screenshotを作らない /
+  Fact · Observation · Interpretation を分離する
+*/}
+
+## 01　画像があると、なぜ強く見えるのか
+
+文字だけの証言より、画面の画像は強く見える。
+
+ロゴがある。  
+名前がある。  
+日時がある。  
+プロフィール写真がある。  
+ブラウザのUIがある。
+
+「実際に見たもの」のように感じる。
+
+画像は、証言より直接的に見える。
+
+しかし、直接的に見えることと、資料経路が完全であることは別である。
+
+<ConceptQuote
+  en={"Visual certainty\ncan exceed evidentiary certainty."}
+  ja="見た目の確かさは、証拠上の確かさを超えて見えることがある。"
+/>
+
+<ScreenshotEvidenceStack />
+
+## 02　スクリーンショットが実際に保存しているもの
+
+スクリーンショットは、ある瞬間の「表示」を保存する。
+
+保存できる：見える文字、画像、表示名、表示時刻、画面構成、写っていればURL、写っていればコメント。
+
+しかし、これは表示状態である。Underlying dataそのものではない。
+
+<AppearanceStructureComparison />
+
+<ConceptQuote
+  en={"A screenshot preserves rendering,\nnot necessarily structure."}
+  ja="スクリーンショットは、表示結果を残す。構造まで残すとは限らない。"
+/>
+
+## 03　画像の外側に消えるもの
+
+<OutsideTheFramePanel />
+
+<Note kind="observation">
+「写っていない＝存在しない」と扱わない。画面の外側は、観測されていないだけでありうる。
+</Note>
+
+<ScreenshotContextPanel />
+
+## 04　元URLがある場合
+
+最も重要なのは、画像から元資料へ戻れることである。
+
+理想的な経路：Screenshot → Original URL → Current Source → Archived version → Source State History → FactClaim。
+
+元URLが確認できる場合、ScreenshotはSourceSurvivalFragmentとしてOriginal Sourceへ接続する。
+
+<OriginalSourcePath />
+
+## 05　元URLが消えた場合
+
+元ページが消えた後、スクリーンショットの価値はむしろ上がることがある。それしか残っていない。
+
+しかし同時に、検証可能性は下がる。この二つを混同しない。
+
+<ConceptQuote
+  en={"High survival value\ndoes not equal high provenance completeness."}
+  ja="残存価値が高いことと、根拠経路が完全であることは同じではない。"
+/>
+
+<PreservationVerificationMatrix />
+
+## 06　投稿者が分からない場合
+
+スクリーンショットにアカウント名が写っていても、それが本物のアカウントか、表示名だけ同じ別人か、ユーザー名変更前か、偽アカウントか、凍結前か、転載された画像かが分からないことがある。
+
+<AccountIdentityEvidencePanel />
+
+<ConceptQuote
+  en={"A visible name\nis not a stable identity key."}
+  ja="画面に見える名前は、安定した本人識別子とは限らない。"
+/>
+
+## 07　時刻は、本当にその時刻なのか
+
+画面に「14:32」と表示されている。
+
+しかし、投稿時刻か、撮影時刻か、端末の時刻か、別タイムゾーンか、「2時間前」表示か、編集後の表示か、ファイル作成時刻かは別問題である。
+
+<ScreenshotTimeEvidencePanel />
+
+<Note kind="observation">
+「3時間前」「昨日」を、Capture time / Timezone / Platform behavior なしで絶対時刻へ自動変換しない。不足なら Relative time only。
+</Note>
+
+## 08　切り抜きは、どこから切られたのか
+
+スクリーンショットは、必ずフレームを持つ。何を入れたか。何を外したか。それ自体が編集である。
+
+<CropEditorialBoundary />
+
+<ConceptQuote
+  en={"Every crop is an editorial boundary."}
+  ja="切り抜きには、必ず編集上の境界がある。"
+/>
+
+<Note kind="observation">
+切り抜き＝改ざん、と自動判定しない。ただし文脈量には影響する。
+</Note>
+
+## 09　編集されたスクリーンショット
+
+赤線を引いた。個人名を隠した。長いスレッドを縦につないだ。これらは必ずしも不正ではない。
+
+問題は、何が変更されたか、変更が明示されているか、主張に影響するか、元画像が残っているかを追跡できることである。
+
+<ScreenshotModificationPanel />
+
+## 10　動画の一枚は、何を証明するのか
+
+動画から切り出した一枚は、その瞬間の映像を保存する。
+
+しかし、前に何があったか、後に何があったか、音声は何だったか、編集された動画か、字幕は元映像か、は分からない。
+
+<FrameVsEvent />
+
+<ConceptQuote
+  en={"A frame proves a frame.\nAn event requires sequence."}
+  ja="一枚のフレームが示すのは、そのフレームである。出来事を理解するには、時間の連続が必要になる。"
+/>
+
+## 11　SNS炎上とスクリーンショット
+
+SNSの炎上では、元投稿よりスクリーンショットの方が広く流通することがある。その途中で Context、Account identity、Edit status、Deletion reason、Reply structure が失われる。
+
+<ScreenshotCascadeDiagram />
+
+<ContextCollapsePanel />
+
+## 12　広告・詐欺・販売ページの証拠
+
+広告や販売ページは、特にMutableである。価格が変わる。条件が変わる。LPが差し替わる。ページが消える。同じURLに別の商品が入る。
+
+スクリーンショットは、その時点の表示を残す意味が大きい。しかし元URL、取得日時、商品名、販売主体、利用規約、決済主体、広告掲載場所まで記録すると、証拠価値が上がる。
+
+<TransactionalScreenshotPanel />
+
+<Note kind="fact">
+スクリーンショット上に表示された価格を、現在価格として表示しない。OfferStateは capture 時点と分離する。
+</Note>
+
+## 13　ニュース記事のスクリーンショット
+
+ニュース記事のスクリーンショットでは、媒体ロゴ、見出し、写真、本文冒頭、日付だけが共有されることがある。
+
+しかし記事本文に、訂正、追記、続報、出典、反論、更新時刻があるかもしれない。
+
+Headline Screenshot は “this headline was displayed” には強く、 “the entire article claimed X” には慎重である。
+
+<HeadlineArticleSplit />
+
+## 14　AI時代の画像証拠
+
+画像生成・編集AIによって、スクリーンショット風の画像を作ること自体が容易になっている。
+
+しかし重要なのは、「AI画像かどうか」を見た目だけで判定することではない。必要なのは Original source、Capture path、File provenance、Platform source、Independent archive、Context である。
+
+<ConceptQuote
+  en={"Authenticity should rely less on appearance\nand more on provenance."}
+  ja="真正性を、見た目だけに依存させない。根拠経路を見る。"
+/>
+
+<AIImageProvenancePanel />
+
+<Note kind="observation">
+ファイルメタデータも単独で絶対的証拠ではない。Supporting evidenceとして、Provenance全体の一部にする。
+</Note>
+
+## 15　スクリーンショットを捨てず、格上げもしない
+
+スクリーンショットがある → 保存する → Sourceとして登録する → 元Sourceを探す → 元URLを記録する → SourceStateを確認 → Archiveを確認 → CaptureContextを記録 → Modificationを確認 → FactClaimを限定する → Unknownを残す。
+
+悪い処理：Screenshot exists → Fact verified、ではない。
+
+<ConceptQuote
+  en={"A screenshot preserves appearance.\nProvenance preserves the path."}
+  ja="スクリーンショットは、見た目を残す。Provenanceは、そこへ至る道を残す。"
+/>
+
+<ConceptQuote
+  en={"Seeing is evidence.\nTracing is verification."}
+  ja="見えたことは証拠になりうる。しかし、検証には辿れることが必要になる。"
+/>
+
+<ScreenshotClaimBoundaryPanel />
+
+<TraceabilityLadder />
+
+<ScreenshotPreservationBundlePanel />
+
+<ScreenshotCaseStudy />
+
+<ScreenshotRepositoryAudit />
+
+<FactObservationInterpretationBlock
+  fact="Repository上のScreenshotSourceRecordおよび関連プロファイル（Context / Relation / Modification / Bundle）は、現時点で実インスタンス0件である。完全に索引化されたスクリーンショット事例はまだない。"
+  observation="スクリーンショットは表示結果を残しうるが、構造・文脈・履歴・取得経路を失いやすい。見た目の確かさと根拠経路の完全さは別である。元資料が消えたあと、残存価値は上がっても検証可能性は下がりうる。"
+  interpretation="スクリーンショットは捨てず、自動的にVerified Factへ格上げもしない。Appearanceを残し、Pathを別に追跡する。claim-exceeds-imageを監視し、Unknownを残す。"
+/>

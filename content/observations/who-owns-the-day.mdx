@@ -1,0 +1,348 @@
+{/*
+  Who Owns the Day? / 一日は、誰のものなのか
+  Rules: no pie charts without duration data /
+  no invented Kafka schedules /
+  no gendered actor inference /
+  Primary Condition ≠ personality /
+  Fact · Observation · Interpretation separated
+*/}
+
+## 01　24時間は、24時間の自由ではない
+
+時計の上では、誰にも24時間ある。  
+しかし生活の中では、時間には種類がある。
+
+<ControlKindsPanel />
+
+一日の総時間と、自由時間を同一視しない。
+
+<ConceptQuote
+  en={"Equal duration\ndoes not mean equal control."}
+  ja="時間の長さが同じでも、使える自由度が同じとは限らない。"
+/>
+
+<TimeOwnershipModel />
+
+## False Precisionを避ける
+
+<DayWithoutPercentages />
+
+## 02　会社が持つ時間
+
+関連：
+[Franz Kafka / フランツ・カフカ](/writers/franz-kafka)
+
+会社員労働では、勤務時間そのものだけでなく、
+
+出勤。  
+準備。  
+移動。  
+昼休み。  
+残業。  
+仕事後の疲労。  
+翌日のための睡眠。
+
+までが、一日の構造へ影響する。
+
+会社にいる時間だけを Paid Work の影響範囲としない。
+
+<Note kind="fact">
+Kafka個人の具体スケジュール・勤務先細部・給与は、一次資料確認後のみ Fact 化する。現在 Indexed TimeOwnershipRecord / InstitutionalTimeRecord = 0。
+</Note>
+
+## Institutional footprint
+
+<InstitutionalFootprint />
+
+<ConceptQuote
+  en={"The footprint of work\ncan be larger than paid hours."}
+  ja="仕事が占有する時間は、給与が発生する時間より大きい場合がある。"
+/>
+
+## 03　家族が持つ時間
+
+関連：
+[樋口一葉](/writers/ichiyo-higuchi) ·
+[林芙美子](/writers/fumiko-hayashi)
+
+家族の時間は、「拘束」とだけ表現できない。
+
+世話。  
+会話。  
+買い物。  
+家計。  
+食事。  
+病気。  
+来客。  
+共同生活。  
+喜び。  
+責任。
+
+家族時間にはケアと負担が同時に存在しうる。一律に失われた時間と扱わない。
+
+<ConceptQuote
+  en={"Care time is not time\nthat failed to become productive time."}
+  ja="ケアの時間は、生産的になれなかった時間ではない。"
+/>
+
+<Note kind="observation">
+「創作できなかった時間」という作家中心の視点だけにしない。家族の生活維持そのものに価値がある。
+</Note>
+
+## 04　生活維持が持つ時間
+
+関連：
+[生活維持は、文学の背景ではない](/observations/maintenance-is-not-background)
+
+<MaintenanceTimeVisibility />
+
+生活維持の時間は、文学作品には残りにくい。しかし、生活を継続するためには必要。
+
+作家本人がすべて Maintenance を行ったと推測しない。
+
+## Invisible Time
+
+出来事の成果は見えるが、それを成立させる時間が資料に残っていないことがある。
+
+Meal exists — but preparation time unknown  
+Clean room — but cleaner unknown  
+Published manuscript — but editing coordination time unknown  
+Performance — but backstage waiting unknown
+
+## 05　身体が持つ時間
+
+一日は、予定だけでは進まない。
+
+疲労。  
+眠気。  
+痛み。  
+病気。  
+空腹。  
+回復。
+
+身体が要求する時間がある。身体は、スケジュールの外部ではない。
+
+<ConceptQuote
+  en={"The body has its own schedule."}
+  ja="身体にも、身体の予定がある。"
+/>
+
+controlledBy = body の時間：Sleep / Rest / Medical / Recovery / Unable-to-work など。
+
+具体的症状は確認済み資料のみ。医学診断はしない。
+
+Planned work → Body condition → Delay / reduced capacity / absence → Institutional response
+
+これは [古川ロッパ](/writers/furukawa-roppa) の PerformanceImpact とも接続可能。KafkaだけのConceptにしない。
+
+## 06　移動が持つ時間
+
+移動は、場所と場所の間の空白に見える。しかし、一日の大きな部分を占めることがある。
+
+通勤。出版社。劇場。病院。店。友人宅。駅。徒歩。列車。
+
+移動時間が未確認なら分数を推測しない。
+
+<ConceptQuote
+  en={"The workplace can occupy\ntime outside the workplace."}
+  ja="職場は、職場の外の時間まで占有することがある。"
+/>
+
+通勤は Work-adjacent time として分析できる。ただし Paid work time とは区別する。
+
+## 07　待つことが持つ時間
+
+関連：
+[楽屋は、歴史に映らない](/observations/backstage-is-not-recorded) ·
+[古川ロッパ](/writers/furukawa-roppa)
+
+待つ：列車、舞台、放送、医師、編集者、返事、許可、観客、制度。
+
+<ConceptQuote
+  en={"Waiting is time controlled\nby an event that has not happened yet."}
+  ja="待つ時間は、まだ起きていない出来事によって拘束される時間である。"
+/>
+
+<Note kind="fact">
+WaitingRecord の duration / canLeave 等は、資料確認後のみ設定する。現在 Roppa Diary WaitingRecord indexed = 0。
+</Note>
+
+## 08　創作時間は残り時間なのか
+
+「仕事が終わってから書く」という構造では、創作時間が残余のように見える。
+
+しかし、作家によっては創作のために予定を断る。夜を使う。勤務を変える。引っ越す。生活を変える。こともありうる。具体例は Source 確認時のみ。
+
+<CreativeTimeTypes />
+
+<ConceptQuote
+  en={"Creative time can be residual,\nprotected, negotiated, or institutionalized."}
+  ja="創作時間は、残り時間、守られた時間、交渉された時間、制度化された時間になりうる。"
+/>
+
+Protected time — 本人が「この時間は書く」等と明示している場合のみ Explicit。
+
+## 09　夜という避難場所
+
+[Kafka](/writers/franz-kafka) を中心にしつつ、普遍化しない。
+
+昼間を制度に使う人にとって、夜は自分の時間に見えることがある。しかし夜は、身体が休む時間でもある。
+
+つまり夜は、Freedom と Body cost が衝突する場所になりうる。
+
+<ConceptQuote
+  en={"Night may increase autonomy\nwhile reducing recovery."}
+  ja="夜は自由度を増やす一方で、回復時間を減らす可能性がある。"
+/>
+
+## 10　睡眠を削れば時間は増えるのか
+
+睡眠を2時間減らせば、2時間増えたように見える。しかし身体は、翌日へ影響を持ち越す。
+
+疲労。集中。仕事。回復。病気。
+
+時間は、単純な足し算ではない。
+
+<ConceptQuote
+  en={"Borrowed time\ncan create future cost."}
+  ja="借りた時間には、後でコストが生まれることがある。"
+/>
+
+医学的因果は断定しない。TimeDebt の causalStatus はデフォルト Unknown。
+
+## 11　お金は時間を買えるのか
+
+関連：
+[普通の一日の値段](/observations/the-price-of-an-ordinary-day) ·
+[一葉](/writers/ichiyo-higuchi) ·
+[Kafka](/writers/franz-kafka) ·
+[Bukowski](/writers/charles-bukowski)
+
+お金があると：家事を外注できる。移動を短くできる。仕事を減らせる。住居を選べる。治療を受けられる。可能性がある。
+
+しかし、具体人物について資料なしにこれらを当てはめない。逆に、お金がないから必ず時間がないとも断定しない。
+
+<ConceptQuote
+  en={"Salary exchanges time for money.\nBut money can also recover time elsewhere."}
+  ja="給与は、時間をお金へ交換する。一方で、そのお金が別の時間を取り戻すこともある。"
+/>
+
+## 12　他者の労働が、自分の時間を作る
+
+ある作家が一日中書けたとしても、
+
+食事を作った人。  
+掃除した人。  
+家計を管理した人。  
+出版社で働いた人。  
+原稿を運んだ人。  
+子どもを見た人。  
+宿を整えた人。
+
+がいる可能性がある。
+
+「自由時間」は、他者の労働によって成立している場合がある。ただし Actor を推測しない。
+
+<ConceptQuote
+  en={"One person's free time\nmay contain another person's work."}
+  ja="一人の自由時間の中に、別の人の労働が含まれていることがある。"
+/>
+
+## 13　中断される一日
+
+Phone. Visitor. Family. Employer. Body. Noise. Travel. Correspondence. Institution. Unexpected event.
+
+中断時間が短くても、集中回復に別コストがある可能性。認知科学的な具体数値は Source なしに出さない。
+
+## Fragmented Time
+
+一時間ある ≠ 一時間連続して使える
+
+15 min → interruption → 10 min → waiting → 20 min → phone → 15 min  
+vs  
+60 min protected
+
+時間量が同じでも構造が違う。FragmentationStatus は品質評価ではない。
+
+## 14　一日の主導権は固定されない
+
+同じ人でも、日によって時間構造は変わる。
+
+平日。休日。病気。締切。旅行。公演日。入院。失業。戦時。家族の出来事。
+
+だから：
+
+Kafka = work-controlled  
+Ichiyō = household-controlled
+
+のように人物へ固定しない。
+
+Primary Condition は観測入口であり人格属性ではない。Day-level variation を保つ。
+
+## 15　時間の余白もまた階級差になる
+
+住居。収入。仕事。家族構造。ケア。交通。健康。
+
+これらが、自由に使える時間へ影響する可能性がある。
+
+しかし class / gender / wealth だけで個人の時間構造を自動説明しない。
+
+<ConceptQuote
+  en={"Access to discretionary time\nis socially distributed."}
+  ja="自分で使える時間へのアクセスは、社会的に均等ではない可能性がある。"
+/>
+
+Discretionary Time（裁量時間）— 「自由時間」より慎重な概念。Self-directed ≠ leisure。Writingも Self-directed の場合がある。Careも本人が選択する場合がある。二値化しない。
+
+## 16　何もしない時間は、誰のものか
+
+何もしていない時間。ぼんやりする。歩く。横になる。待つ。眠る。窓を見る。
+
+これを Waste / Unproductive / Unused とは呼ばない。
+
+創作の準備かもしれない。身体の回復かもしれない。ただの休息かもしれない。意味がないかもしれない。資料なしに役割を与えない。
+
+<ConceptQuote
+  en={"Unproductive time\ndoes not need to justify itself."}
+  ja="生産しない時間は、生産へ役立つことで正当化される必要はない。"
+/>
+
+「何をしていたか分からない時間」を勝手に Rest へ分類しない。
+
+## 17　Diary Observatoryで時間をどう記録するか
+
+Diary Observatoryでは、「何時間だったか」だけを問わない。
+
+誰が決めたか。  
+動かせたか。  
+中断されたか。  
+報酬があったか。  
+身体が許したか。  
+誰かが支えたか。  
+記録されなかった時間は何か。
+
+を問う。
+
+<TimeObservatoryFramework />
+
+## 七人の書き手と時間の問い
+
+<SevenWriterTimeComparison />
+
+## Epistemic split
+
+<WhoOwnsDayEpistemic />
+
+## Related observations
+
+<WhoOwnsDayRelatedLinks />
+
+<ConceptQuote
+  en={"A day is not simply twenty-four free hours.\nIt is a negotiated space between institutions, bodies,\nrelationships, and self-directed time."}
+  ja="一日は、自由に使える24時間ではない。制度、身体、人間関係、そして自分で使える時間のあいだで配分される空間である。"
+/>
+
+<ConceptQuote
+  en={"Creative time is often not found.\nIt is made."}
+  ja="創作時間は、どこかに空いているとは限らない。作らなければ存在しないことがある。"
+/>

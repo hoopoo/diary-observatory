@@ -23,6 +23,7 @@ import MoreSourcesArticle from "@/content/observations/more-sources-less-certain
 import LinkRotArticle from "@/content/observations/link-rot-is-archive-history.mdx";
 import ScreenshotObsArticle from "@/content/observations/screenshot-is-not-provenance.mdx";
 import SnsDiaryArticle from "@/content/observations/is-social-media-a-diary.mdx";
+import WhoOwnsDayArticle from "@/content/observations/who-owns-the-day.mdx";
 import HeiseiDanchoArticle from "@/content/observations/heisei-dancho-tei-nichijo.mdx";
 import ThreeCitiesArticle from "@/content/observations/three-cities-three-speeds.mdx";
 import {
@@ -101,6 +102,11 @@ import {
   relatedComingSnsDiary,
 } from "@/data/observations/is-social-media-a-diary";
 import {
+  WHO_OWNS_DAY_SLUG,
+  whoOwnsDayMeta,
+  relatedComingWhoOwnsDay,
+} from "@/data/observations/who-owns-the-day";
+import {
   THREE_CITIES_SLUG,
   relatedComingForEssay,
   threeCitiesMeta,
@@ -126,6 +132,7 @@ const ARTICLE_BODY: Record<string, ComponentType> = {
   [LINK_ROT_OBS_SLUG]: LinkRotArticle,
   [SCREENSHOT_OBS_SLUG]: ScreenshotObsArticle,
   [SNS_DIARY_OBS_SLUG]: SnsDiaryArticle,
+  [WHO_OWNS_DAY_SLUG]: WhoOwnsDayArticle,
 };
 
 export function generateStaticParams() {
@@ -166,7 +173,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
                               ? "スクリーンショットだけが残る｜Diary Observatory"
                               : slug === SNS_DIARY_OBS_SLUG
                                 ? "SNSは日記なのか｜Diary Observatory"
-                                : observation.title;
+                                : slug === WHO_OWNS_DAY_SLUG
+                                  ? "一日は、誰のものなのか｜Diary Observatory"
+                                  : observation.title;
 
   const description = observation.summary;
 
@@ -204,6 +213,7 @@ export default async function ObservationDetailPage({ params }: Props) {
   const isLinkRot = slug === LINK_ROT_OBS_SLUG;
   const isScreenshotObs = slug === SCREENSHOT_OBS_SLUG;
   const isSnsDiary = slug === SNS_DIARY_OBS_SLUG;
+  const isWhoOwnsDay = slug === WHO_OWNS_DAY_SLUG;
   const Body = ARTICLE_BODY[observation.slug];
   const writers = observation.writerIds
     .map((id) => getWriterById(id))
@@ -307,7 +317,9 @@ export default async function ObservationDetailPage({ params }: Props) {
 
         <header className="mt-6 border-b border-border pb-10">
           <p className="label">
-            {isSnsDiary
+            {isWhoOwnsDay
+              ? whoOwnsDayMeta.axisLabel
+              : isSnsDiary
               ? snsDiaryMeta.axisLabel
               : isScreenshotObs
               ? screenshotObsMeta.axisLabel
@@ -482,6 +494,31 @@ export default async function ObservationDetailPage({ params }: Props) {
                 <dt className="label">Last updated</dt>
                 <dd className="mt-1 text-text-soft">
                   {screenshotObsMeta.lastUpdated}
+                </dd>
+              </div>
+            </dl>
+          ) : isWhoOwnsDay ? (
+            <dl className="mt-8 grid gap-3 text-xs text-text-faint sm:grid-cols-2">
+              <div className="sm:col-span-2">
+                <dt className="label">Themes</dt>
+                <dd className="mt-1 text-text-soft">{whoOwnsDayMeta.themes}</dd>
+              </div>
+              <div>
+                <dt className="label">Article status</dt>
+                <dd className="mt-1 text-text-soft">
+                  {whoOwnsDayMeta.articleStatus}
+                </dd>
+              </div>
+              <div>
+                <dt className="label">Verification status</dt>
+                <dd className="mt-1 text-text-soft">
+                  {whoOwnsDayMeta.verificationStatus}
+                </dd>
+              </div>
+              <div>
+                <dt className="label">Last updated</dt>
+                <dd className="mt-1 text-text-soft">
+                  {whoOwnsDayMeta.lastUpdated}
                 </dd>
               </div>
             </dl>
@@ -1810,7 +1847,51 @@ export default async function ObservationDetailPage({ params }: Props) {
           </>
         )}
 
+
+        {isWhoOwnsDay && (
+          <>
+            <section className="my-14">
+              <h2 className="editorial text-2xl text-text">Related pages</h2>
+              <ul className="mt-6 space-y-3">
+                {[
+                  ["/writers/franz-kafka", "Writer", "Franz Kafka"],
+                  ["/writers/ichiyo-higuchi", "Writer", "Ichiyō Higuchi"],
+                  ["/writers/fumiko-hayashi", "Writer", "Fumiko Hayashi"],
+                  ["/writers/furukawa-roppa", "Writer", "Roppa Furukawa"],
+                  [
+                    "/observations/maintenance-is-not-background",
+                    "Published",
+                    "生活維持は、文学の背景ではない",
+                  ],
+                  [
+                    "/observations/the-price-of-an-ordinary-day",
+                    "Published",
+                    "普通の一日の値段",
+                  ],
+                  [
+                    "/observations/backstage-is-not-recorded",
+                    "Published",
+                    "楽屋は、歴史に映らない",
+                  ],
+                ].map(([href, label, title]) => (
+                  <li key={href}>
+                    <Link
+                      href={href}
+                      className="focus-ring block border border-border px-4 py-4 hover:border-text-faint"
+                    >
+                      <p className="label">{label}</p>
+                      <p className="editorial mt-2 text-xl">{title}</p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+            <ComingObservations items={relatedComingWhoOwnsDay} />
+          </>
+        )}
+
         <CategorizedSourceList sources={observation.sources} />
+
       </article>
     </>
   );

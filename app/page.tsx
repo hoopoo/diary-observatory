@@ -12,7 +12,10 @@ import { SameDayComparison } from "@/components/SameDayComparison";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SurvivalSummary } from "@/components/SurvivalSummary";
 import { WriterCard } from "@/components/WriterCard";
-import { WriterConditionsRow } from "@/components/WriterConditionsRow";
+import {
+  PrimaryConditionsGrid,
+  WriterConditionsRow,
+} from "@/components/WriterConditionsRow";
 import {
   comparisons,
   futureWriters,
@@ -95,6 +98,15 @@ export default function HomePage() {
 
         <section>
           <LatestObservationCard
+            title="一日は、誰のものなのか"
+            subtitle="会社、家族、身体、創作に分割される24時間"
+            href="/observations/who-owns-the-day"
+            cta="Read observation"
+          />
+        </section>
+
+        <section>
+          <LatestObservationCard
             title="SNSは日記なのか"
             subtitle="「今日あったことを書く」だけでは、日記にならない"
             href="/observations/is-social-media-a-diary"
@@ -170,8 +182,8 @@ export default function HomePage() {
             eyebrow="Writers"
             title="Writers"
             titleJa="書き手たち"
-            description="Six lives, six different structures of an ordinary day."
-            descriptionJa="六人の生活から、「普通の一日」の異なる構造を見る。"
+            description="Nine lives, nine structures of an ordinary day."
+            descriptionJa="九人の生活から、「普通の一日」の異なる構造を見る。"
           />
           <div className="mt-6">
             <WriterConditionsRow />
@@ -180,6 +192,9 @@ export default function HomePage() {
             {writers.map((writer) => (
               <WriterCard key={writer.id} writer={writer} />
             ))}
+          </div>
+          <div className="mt-8">
+            <PrimaryConditionsGrid />
           </div>
           <p className="mt-6 text-sm text-text-faint">
             Primary diary hub:{" "}

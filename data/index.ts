@@ -131,7 +131,51 @@ export {
   ICHIYO_SLUG,
   ICHIYO_WRITER_ID,
 } from "./writers/ichiyo-higuchi";
+export {
+  KAFKA_SLUG,
+  KAFKA_WRITER_ID,
+} from "./writers/franz-kafka";
+export {
+  WOOLF_SLUG,
+  WOOLF_WRITER_ID,
+} from "./writers/virginia-woolf";
+export {
+  PEPYS_SLUG,
+  PEPYS_WRITER_ID,
+} from "./writers/samuel-pepys";
+export {
+  WHO_OWNS_DAY_OBS_ID,
+  WHO_OWNS_DAY_SLUG,
+} from "./observations/who-owns-the-day";
 export { retailRecords } from "./retail/registry";
+export {
+  primaryConditionDefinitions,
+  writerConditionAssignments,
+} from "./primary-conditions";
+export { publishingActivityRecords } from "./publishing-activity-records";
+export { literaryNetworkRelations } from "./literary-network-relations";
+export { meetingRecords } from "./meeting-records";
+export { readingRecords } from "./reading-records";
+export { reviewRecords } from "./review-records";
+export { administrationRecords } from "./administration-records";
+export { publicEventImpactRecords } from "./public-event-impact-records";
+export { cityInfrastructureRecords } from "./city-infrastructure-records";
+export { entertainmentRecords } from "./entertainment-records";
+export {
+  publicHealthContextRecords,
+  disasterContextRecords,
+} from "./public-context-records";
+export {
+  timeOwnershipRecords,
+  writingSessions,
+  sleepRecords,
+  interruptionRecords,
+  correspondenceRecords,
+  writingSystemProfiles,
+  institutionalTimeRecords,
+  familyTimeRecords,
+  creativeTimeRecords,
+} from "./time/registry";
 export {
   CAPTAIN_DIARY_ID,
   CAPTAIN_DIARY_SLUG,
@@ -204,9 +248,6 @@ export const futureWriters = [
   "清沢洌",
   "高見順",
   "Henry David Thoreau",
-  "Virginia Woolf",
-  "Franz Kafka",
-  "Samuel Pepys",
   "Sylvia Plath",
   "Anaïs Nin",
   "Cesare Pavese",

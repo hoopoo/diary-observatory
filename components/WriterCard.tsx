@@ -1,24 +1,16 @@
 import Link from "next/link";
-import type { PrimaryCondition, Writer } from "@/lib/types";
-
-const CONDITION_LABEL: Record<PrimaryCondition, string> = {
-  environment: "Environment",
-  media: "Media",
-  labor: "Labor",
-  maintenance: "Maintenance",
-  performance: "Performance",
-  "household-economy": "Household Economy",
-  mixed: "Mixed",
-  unknown: "Unknown",
-};
+import { getPrimaryConditionDefinition } from "@/data/primary-conditions";
+import type { Writer } from "@/lib/types";
 
 export function WriterCard({ writer }: { writer: Writer }) {
   const years = writer.deathYear
     ? `${writer.birthYear}–${writer.deathYear}`
     : `${writer.birthYear}–`;
-  const condition = writer.primaryCondition
-    ? CONDITION_LABEL[writer.primaryCondition]
-    : null;
+  const def = writer.primaryCondition
+    ? getPrimaryConditionDefinition(writer.primaryCondition)
+    : undefined;
+  const conditionShort = def?.shortLabel ?? def?.label ?? null;
+  const conditionFull = def?.label ?? null;
 
   return (
     <Link
@@ -35,9 +27,15 @@ export function WriterCard({ writer }: { writer: Writer }) {
         <p className="label shrink-0">{years}</p>
       </div>
 
-      {condition ? (
-        <p className="inline-flex w-fit border border-border px-2 py-0.5 text-[0.65rem] tracking-wide text-text-faint">
-          {condition}
+      {conditionShort ? (
+        <p
+          className="inline-flex w-fit border border-border px-2 py-0.5 text-[0.65rem] tracking-wide text-text-faint"
+          title={conditionFull ?? undefined}
+        >
+          {conditionShort}
+          {conditionFull && conditionFull !== conditionShort ? (
+            <span className="sr-only"> ({conditionFull})</span>
+          ) : null}
         </p>
       ) : null}
 
@@ -47,6 +45,12 @@ export function WriterCard({ writer }: { writer: Writer }) {
 
       <p className="jp-serif text-sm text-text-soft">{writer.taglineJa}</p>
       <p className="text-sm text-text-faint">{writer.tagline}</p>
+
+      {writer.observationStatus ? (
+        <p className="text-[0.65rem] tracking-wide text-text-faint">
+          Research · {writer.observationStatus}
+        </p>
+      ) : null}
 
       <p className="mt-auto pt-2 text-xs tracking-wide text-accent underline-offset-4 group-hover:underline">
         Open writer →

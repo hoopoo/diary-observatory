@@ -1,0 +1,148 @@
+import type { PrimaryConditionDefinition } from "@/lib/types";
+
+/** Data-driven primary conditions — UI should map over this, not hardcode writer count. */
+export const primaryConditionDefinitions: PrimaryConditionDefinition[] = [
+  {
+    id: "environment",
+    label: "Environment",
+    labelJa: "環境",
+    shortLabel: "Environment",
+    shortLabelJa: "環境",
+    description: "Weather, garden, walking, and urban atmosphere as daily conditions.",
+    descriptionJa: "天候、庭、散歩、都市の空気が一日を形づくる。",
+    question: "What surrounds the ordinary day?",
+    questionJa: "普通の一日を取り囲んでいるものは何か。",
+    writerIds: ["writer-kafu"],
+  },
+  {
+    id: "media",
+    label: "Media",
+    labelJa: "メディア",
+    shortLabel: "Media",
+    shortLabelJa: "メディア",
+    description: "Publishing, television, bookstores, and cultural industry contact.",
+    descriptionJa: "出版、テレビ、書店、文化産業との接触。",
+    question: "How does the media system enter a writer's day?",
+    questionJa: "メディアの仕組みは、書き手の一日へどう入ってくるのか。",
+    writerIds: ["writer-nishimura"],
+  },
+  {
+    id: "labor",
+    label: "Labor",
+    labelJa: "労働",
+    shortLabel: "Labor",
+    shortLabelJa: "労働",
+    description: "Paid work, bars, racing, and the bodily economy of writing.",
+    descriptionJa: "有償労働、酒場、競馬、書く身体の経済。",
+    question: "What work sustains and reshapes literary life?",
+    questionJa: "どのような労働が、文学生活を支え、変形するのか。",
+    writerIds: ["writer-bukowski"],
+  },
+  {
+    id: "maintenance",
+    label: "Maintenance",
+    labelJa: "生活維持",
+    shortLabel: "Maintenance",
+    shortLabelJa: "生活維持",
+    description: "Housing, food, unpaid work, and care before writing begins.",
+    descriptionJa: "書く前の住居、食事、無償労働、ケア。",
+    question: "What work had to happen before writing could begin?",
+    questionJa: "書き始める前に、どのような仕事が必要だったのか。",
+    writerIds: ["writer-hayashi"],
+  },
+  {
+    id: "performance",
+    label: "Performance",
+    labelJa: "上演",
+    shortLabel: "Performance",
+    shortLabelJa: "上演",
+    description: "Stage, rehearsal, body, audience, and entertainment labor.",
+    descriptionJa: "舞台、稽古、身体、観客、興行労働。",
+    question: "What work happened before the audience saw the result?",
+    questionJa: "観客が成果を見る前に、どのような仕事が行われたのか。",
+    writerIds: ["writer-roppa"],
+  },
+  {
+    id: "household-economy",
+    label: "Household Economy",
+    labelJa: "家計",
+    shortLabel: "Household Economy",
+    shortLabelJa: "家計",
+    description: "Writing inside household money, family maintenance, and commerce.",
+    descriptionJa: "家計、家族扶養、商売の内部にある創作。",
+    question: "How does household survival share a day with writing?",
+    questionJa: "家計維持は、創作と同じ一日をどう分かち合うのか。",
+    writerIds: ["writer-ichiyo"],
+  },
+  {
+    id: "time",
+    label: "Time",
+    labelJa: "時間",
+    shortLabel: "Time",
+    shortLabelJa: "時間",
+    description:
+      "Institutional work, commute, night writing, sleep, and ownership of hours.",
+    descriptionJa: "勤務、通勤、夜の執筆、睡眠、そして時間の所有。",
+    question: "Who controls the hours of an ordinary day?",
+    questionJa: "普通の一日の時間を、誰が支配しているのか。",
+    writerIds: ["writer-kafka"],
+  },
+  {
+    id: "publishing-network",
+    label: "Publishing / Network",
+    labelJa: "出版／ネットワーク",
+    shortLabel: "Publishing",
+    shortLabelJa: "出版",
+    description:
+      "Writing, editing, correspondence, publishing, review, and intellectual networks.",
+    descriptionJa: "執筆、編集、手紙、出版、書評、知的ネットワーク。",
+    question: "How does writing move from private work to public circulation?",
+    questionJa: "書かれたものは、どのような人と仕組みを通って公的な文章になるのか。",
+    writerIds: ["writer-woolf"],
+  },
+  {
+    id: "administration-public-life",
+    label: "Administration / Public Life",
+    labelJa: "行政／公的生活",
+    shortLabel: "Administration",
+    shortLabelJa: "行政",
+    description:
+      "Documents, meetings, accounts, city infrastructure, and public events in private days.",
+    descriptionJa: "書類、会合、会計、都市インフラ、そして私的な一日に入る公共事件。",
+    question: "How does public infrastructure enter an ordinary private day?",
+    questionJa: "社会制度や公共インフラは、個人の普通の一日にどのように入り込むのか。",
+    writerIds: ["writer-pepys"],
+  },
+];
+
+export const writerConditionAssignments = [
+  { conditionId: "environment" as const, writer: "Kafū", writerId: "writer-kafu" },
+  { conditionId: "media" as const, writer: "Nishimura", writerId: "writer-nishimura" },
+  { conditionId: "labor" as const, writer: "Bukowski", writerId: "writer-bukowski" },
+  { conditionId: "maintenance" as const, writer: "Hayashi", writerId: "writer-hayashi" },
+  {
+    conditionId: "performance" as const,
+    writer: "Roppa",
+    writerId: "writer-roppa",
+  },
+  {
+    conditionId: "household-economy" as const,
+    writer: "Ichiyō",
+    writerId: "writer-ichiyo",
+  },
+  { conditionId: "time" as const, writer: "Kafka", writerId: "writer-kafka" },
+  {
+    conditionId: "publishing-network" as const,
+    writer: "Woolf",
+    writerId: "writer-woolf",
+  },
+  {
+    conditionId: "administration-public-life" as const,
+    writer: "Pepys",
+    writerId: "writer-pepys",
+  },
+];
+
+export function getPrimaryConditionDefinition(id: string) {
+  return primaryConditionDefinitions.find((d) => d.id === id);
+}

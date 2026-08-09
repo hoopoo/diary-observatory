@@ -380,6 +380,16 @@ export const ichiyoRelatedWriters = [
     href: "/writers/kenji-nishimura",
     status: "available" as const,
   },
+  {
+    id: "writer-kafka",
+    name: "Franz Kafka",
+    nameJa: "フランツ・カフカ",
+    connection: "Who controls the writer's time?",
+    text: "家計義務と有償労働という異なる時間支配。男女二分法ではなく、時間構造として比較する候補。",
+    cta: "Open writer",
+    href: "/writers/franz-kafka",
+    status: "available" as const,
+  },
 ];
 
 export const visibleInvisible = {
@@ -443,6 +453,7 @@ export const writerConditions = [
   { id: "maintenance", label: "Maintenance", writer: "Hayashi" },
   { id: "performance", label: "Performance", writer: "Roppa" },
   { id: "household-economy", label: "Household Economy", writer: "Ichiyō" },
+  { id: "time", label: "Time", writer: "Kafka" },
 ] as const;
 
 export const primaryConditionLabel = {

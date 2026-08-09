@@ -101,9 +101,68 @@ import {
   snsDiaryLead,
   snsDiarySources,
 } from "./observations/is-social-media-a-diary";
+import {
+  WHO_OWNS_DAY_OBS_ID,
+  WHO_OWNS_DAY_SLUG,
+  whoOwnsDayLead,
+  whoOwnsDaySources,
+} from "./observations/who-owns-the-day";
 import type { Observation } from "@/lib/types";
 
 export const observations: Observation[] = [
+  {
+    id: WHO_OWNS_DAY_OBS_ID,
+    slug: WHO_OWNS_DAY_SLUG,
+    title: "一日は、誰のものなのか",
+    subtitle: "会社、家族、身体、創作に分割される24時間",
+    titleEn: "Who Owns the Day?",
+    subtitleEn:
+      "How twenty-four hours are divided among work, family, body, and creation",
+    summary:
+      "会社、家族、家事、身体、睡眠、移動、待機、創作など、普通の一日の24時間が誰によって決められ、どのように分割されるのかを、Kafka、一葉、林芙美子、ロッパらの記録構造から観測する。時間割合の捏造はしない。",
+    summaryJa:
+      "会社、家族、家事、身体、睡眠、移動、待機、創作など、普通の一日の24時間が誰によって決められ、どのように分割されるのかを、Kafka、一葉、林芙美子、ロッパらの記録構造から観測する。時間割合の捏造はしない。",
+    lead: whoOwnsDayLead,
+    contentPath: WHO_OWNS_DAY_SLUG,
+    writerIds: [
+      "writer-kafka",
+      "writer-ichiyo",
+      "writer-hayashi",
+      "writer-bukowski",
+      "writer-nishimura",
+      "writer-kafu",
+      "writer-roppa",
+    ],
+    diaryEntryIds: [],
+    diaryWorkIds: [],
+    entityIds: [],
+    themes: [
+      "Time",
+      "Work",
+      "Writing",
+      "Maintenance",
+      "Body",
+      "Family",
+      "Sleep",
+      "Waiting",
+      "Institution",
+      "Creative Labor",
+    ],
+    periodObserved: "Cross-writer / research-stage time observatory",
+    observationStatus: "Published",
+    publishedAt: "2026-08-10",
+    updatedAt: "2026-08-10",
+    language: "ja",
+    featured: true,
+    relatedObservationIds: [
+      "obs-maintenance-is-not-background",
+      "obs-the-price-of-an-ordinary-day",
+      "obs-backstage-is-not-recorded",
+      SNS_DIARY_OBS_ID,
+    ],
+    verificationStatus: "partial",
+    sources: whoOwnsDaySources,
+  },
   {
     id: SNS_DIARY_OBS_ID,
     slug: SNS_DIARY_OBS_SLUG,

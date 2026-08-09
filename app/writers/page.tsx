@@ -1,12 +1,15 @@
 import type { Metadata } from "next";
+import {
+  PrimaryConditionsGrid,
+  WriterConditionsRow,
+} from "@/components/WriterConditionsRow";
 import { WriterCard } from "@/components/WriterCard";
-import { WriterConditionsRow } from "@/components/WriterConditionsRow";
 import { futureWriters, writers } from "@/data/index";
 
 export const metadata: Metadata = {
   title: "Writers",
   description:
-    "Writers observed by Diary Observatory — Kafū Nagai, Kenji Nishimura, Charles Bukowski, Fumiko Hayashi, Roppa Furukawa, and Ichiyō Higuchi.",
+    "Nine lives, nine structures of an ordinary day — diaries and self-records observed through distinct Primary Conditions, not celebrity biography.",
 };
 
 export default function WritersPage() {
@@ -15,10 +18,14 @@ export default function WritersPage() {
       <p className="label">Writers</p>
       <h1 className="editorial mt-3 text-4xl text-text md:text-5xl">Writers</h1>
       <p className="jp-serif mt-3 max-w-2xl text-text-soft">
-        書き手たち。六人の生活から、「普通の一日」の異なる構造を見る。
+        書き手たち。九人の生活から、「普通の一日」の異なる構造を見る。
       </p>
       <p className="mt-3 max-w-2xl text-sm text-text-faint">
-        Six lives, six different structures of an ordinary day.
+        Nine lives, nine structures of an ordinary day.
+      </p>
+      <p className="mt-3 max-w-2xl text-xs text-text-faint">
+        ここでいう Writer
+        は職業としての作家だけを意味しない。日記や自己記録を書き残した人を含む。
       </p>
 
       <div className="mt-8">
@@ -31,15 +38,18 @@ export default function WritersPage() {
         ))}
       </div>
 
+      <div className="mt-10">
+        <PrimaryConditionsGrid />
+      </div>
+
       <section className="mt-14 border border-border-soft px-5 py-5">
         <h2 className="label">Future subjects / research candidates</h2>
         <p className="mt-3 text-sm leading-relaxed text-text-faint">
           {futureWriters.join(" · ")}
         </p>
         <p className="mt-3 text-xs text-text-faint">
-          Candidates such as Franz Kafka, Virginia Woolf, and Samuel Pepys remain
-          research queue only — no public Writer cards until diary corpus and a
-          distinct observation axis are ready.
+          Research queue only — no public Writer cards until a distinct
+          observation axis and bibliographic baseline are ready.
         </p>
       </section>
     </div>

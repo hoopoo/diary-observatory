@@ -50,6 +50,18 @@ export default function AboutPage() {
       </div>
 
       <section className="mt-14 space-y-4 border-t border-border pt-10">
+        <h2 className="editorial text-2xl text-text">What “Writer” means here</h2>
+        <p className="jp-heading text-lg">ここでいう Writer</p>
+        <p className="text-sm leading-relaxed text-text-soft">
+          Writers means people whose diaries, journals, letters, or self-records
+          are being observed.
+        </p>
+        <p className="jp-serif text-sm leading-relaxed text-text-soft">
+          ここでいうWriterは、職業としての作家だけを意味しない。日記や自己記録を書き残した人を含む。
+        </p>
+      </section>
+
+      <section className="mt-14 space-y-4 border-t border-border pt-10">
         <h2 className="editorial text-2xl text-text">Featured comparison</h2>
         <p className="text-sm text-text-soft">
           荷風・西村・ブコウスキーを横断する代表比較ページ。

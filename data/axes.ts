@@ -57,6 +57,14 @@ export const observationAxes: ObservationAxis[] = [
     href: "/observations/backstage-is-not-recorded",
   },
   {
+    id: "time",
+    label: "Time",
+    labelJa: "時間",
+    question: "Who controls the hours of an ordinary day?",
+    questionJa: "普通の一日の時間を、誰が支配しているのか。",
+    href: "/observations/who-owns-the-day",
+  },
+  {
     id: "housing",
     label: "Housing",
     labelJa: "住居",

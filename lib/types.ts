@@ -779,6 +779,16 @@ export type CostVisibility =
   | "institutionally-supported"
   | "unknown";
 
+/** Distinguishes personal / household money from institutional or public funds. */
+export type MoneyContext =
+  | "personal"
+  | "household"
+  | "employment"
+  | "institutional"
+  | "public"
+  | "business"
+  | "unknown";
+
 export type MoneyRecord = {
   id: string;
   writerId: string;
@@ -793,6 +803,8 @@ export type MoneyRecord = {
   originalTextValue?: string | null;
   context: string;
   contextJa?: string;
+  /** Optional structured money domain — do not conflate public and private funds. */
+  moneyContext?: MoneyContext;
   relatedEntityIds?: string[];
   relatedItemIds?: string[];
   incomeOrExpense: IncomeOrExpense;
@@ -1375,8 +1387,20 @@ export type WorkRecord = {
   jobType: string;
   jobTypeJa?: string;
   employerEntityId?: string;
+  /** Alias for workplace when distinct from employer. */
+  workplaceEntityId?: string;
   locationId?: string;
+  occupation?: string;
+  workType?: WorkType;
+  startTime?: string | null;
+  endTime?: string | null;
+  duration?: string | null;
+  taskCategory?: string;
+  colleagueIds?: string[];
   wageMoneyRecordId?: string;
+  moneyRecordIds?: string[];
+  bodyRecordIds?: string[];
+  movementRecordIds?: string[];
   shift?: string;
   bodyContext?: string;
   relatedTextFragmentIds?: string[];
@@ -1395,6 +1419,11 @@ export type MovementRecord = {
   destinationPlaceId?: string;
   transportMode?: string;
   reason: MovementReason;
+  duration?: string | null;
+  timePrecision?: TimePrecision;
+  controlType?: "required" | "chosen" | "mixed" | "unknown";
+  purpose?: string;
+  waitingIncluded?: boolean | null;
   costRecordIds?: string[];
   companionIds?: string[];
   relatedHousingRecordIds?: string[];
@@ -1519,8 +1548,525 @@ export type PrimaryCondition =
   | "maintenance"
   | "performance"
   | "household-economy"
+  | "time"
+  | "publishing-network"
+  | "administration-public-life"
   | "mixed"
   | "unknown";
+
+/** Data-driven definition — avoid hardcoding condition UIs. */
+export type PrimaryConditionDefinition = {
+  id: PrimaryCondition;
+  label: string;
+  labelJa: string;
+  /** Card / grid short label when full label is long. */
+  shortLabel?: string;
+  shortLabelJa?: string;
+  description: string;
+  descriptionJa?: string;
+  question: string;
+  questionJa?: string;
+  /** Writers for whom this is the Primary Condition entry point — not essence. */
+  writerIds?: string[];
+};
+
+export type TimePrecision =
+  | "exact"
+  | "approximate"
+  | "daypart"
+  | "sequence-only"
+  | "inferred"
+  | "unknown";
+
+export type TimeBlockType =
+  | "paid-work"
+  | "commute"
+  | "writing"
+  | "reading"
+  | "correspondence"
+  | "family"
+  | "social"
+  | "sleep"
+  | "rest"
+  | "medical"
+  | "waiting"
+  | "meal"
+  | "unknown";
+
+export type ControlledBy =
+  | "self"
+  | "employer"
+  | "family"
+  | "institution"
+  | "appointment"
+  | "body"
+  | "mixed"
+  | "unknown";
+
+export type TimeOwnershipRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  date?: string;
+  timeBlockType: TimeBlockType;
+  /** A block may belong to multiple analytical layers. */
+  layerTypes?: TimeLayerType[];
+  startTime?: string | null;
+  endTime?: string | null;
+  duration?: string | null;
+  controlledBy: ControlledBy;
+  flexibility?: "rigid" | "flexible" | "unknown";
+  interruptionStatus?: "interrupted" | "uninterrupted" | "unknown";
+  timePrecision?: TimePrecision;
+  relatedWorkRecordIds?: string[];
+  relatedBodyRecordIds?: string[];
+  relatedMovementRecordIds?: string[];
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type TimeLayerType =
+  | "institutional"
+  | "maintenance"
+  | "relational"
+  | "body"
+  | "mobility"
+  | "self-directed"
+  | "creative"
+  | "commercial"
+  | "unknown";
+
+export type InstitutionalTimeType =
+  | "work"
+  | "school"
+  | "military"
+  | "medical"
+  | "court"
+  | "publishing"
+  | "rehearsal"
+  | "broadcast"
+  | "administrative"
+  | "other";
+
+export type InstitutionalTimeRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  institutionId?: string;
+  timeType: InstitutionalTimeType;
+  startTime?: string | null;
+  endTime?: string | null;
+  duration?: string | null;
+  mandatoryStatus?: "mandatory" | "optional" | "unknown";
+  flexibility?: "rigid" | "flexible" | "unknown";
+  compensationStatus?: "paid" | "unpaid" | "unknown";
+  relatedMovementIds?: string[];
+  relatedWaitingIds?: string[];
+  relatedBodyIds?: string[];
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type FamilyTimeActivityType =
+  | "care"
+  | "meal"
+  | "household"
+  | "conversation"
+  | "accompaniment"
+  | "money-management"
+  | "medical-support"
+  | "event"
+  | "conflict"
+  | "shared-leisure"
+  | "other";
+
+export type FamilyTimeRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  date?: string;
+  activityType: FamilyTimeActivityType;
+  relatedPersonIds?: string[];
+  responsibilityLevel?: "primary" | "shared" | "peripheral" | "unknown";
+  plannedStatus?: "planned" | "unplanned" | "unknown";
+  interruptionStatus?: "interrupted" | "uninterrupted" | "unknown";
+  paidStatus?: PaidStatus;
+  /** Only when explicitly documented — never invent psychology. */
+  emotionalMeaning?: string;
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type InvisibleTimeGap = {
+  id: string;
+  recordId?: string;
+  relatedActivityType?: string;
+  knownOutcome: string;
+  missingTimeType: string;
+  likelyActorType?: "self" | "other" | "institution" | "unknown";
+  actorKnown: boolean;
+  durationKnown: boolean;
+  sourceNeeded: boolean;
+  significance?: string;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+};
+
+export type CreativeTimeRelation =
+  | "residual"
+  | "scheduled"
+  | "protected"
+  | "opportunistic"
+  | "overlapping"
+  | "night"
+  | "early-morning"
+  | "travel"
+  | "unknown";
+
+export type ProtectedTimeEvidence = "explicit" | "implied" | "unknown";
+
+export type CreativeTimeRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  date?: string;
+  activityType?: "writing" | "revision" | "reading" | "correspondence" | "other";
+  timeRelation: CreativeTimeRelation;
+  protectedStatus?: ProtectedTimeEvidence;
+  competingTimeTypes?: TimeBlockType[];
+  interruptionIds?: string[];
+  bodyRelation?: string;
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type NightTimeRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  activityIds?: string[];
+  writingStatus?: "present" | "absent" | "unknown";
+  sleepStatus?: "present" | "reduced" | "absent" | "unknown";
+  workNextDay?: "yes" | "no" | "unknown";
+  bodyImpact?: string;
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds?: string[];
+};
+
+export type TimeDebtBorrowedFrom =
+  | "sleep"
+  | "rest"
+  | "meal"
+  | "family"
+  | "work"
+  | "other";
+
+export type TimeDebtRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  sourceTimeRecordId?: string;
+  borrowedFrom: TimeDebtBorrowedFrom;
+  usedFor?: string;
+  laterImpactRecordIds?: string[];
+  causalStatus: "explicit" | "supported" | "possible" | "unknown";
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds?: string[];
+};
+
+export type MoneyTimeRelationType =
+  | "buys-service"
+  | "reduces-work"
+  | "requires-more-work"
+  | "enables-travel"
+  | "enables-housing"
+  | "enables-care"
+  | "literary-income"
+  | "unknown";
+
+export type MoneyTimeRelation = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  moneyRecordId?: string;
+  timeRecordIds?: string[];
+  relationType: MoneyTimeRelationType;
+  evidenceBasis: string;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds?: string[];
+};
+
+export type TimeSupportType =
+  | "food"
+  | "cleaning"
+  | "childcare"
+  | "administration"
+  | "publishing"
+  | "transport"
+  | "medical"
+  | "housing"
+  | "financial"
+  | "other";
+
+export type TimeSupportRelation = {
+  id: string;
+  beneficiaryActorId?: string;
+  supportActorId?: string;
+  entryId?: string;
+  supportType: TimeSupportType;
+  relatedMaintenanceEventIds?: string[];
+  /** Do not invent quantitative values without evidence. */
+  timeEnabled?: string | null;
+  paidStatus?: PaidStatus;
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+};
+
+export type TimeFragmentationStatus =
+  | "continuous"
+  | "moderately-fragmented"
+  | "highly-fragmented"
+  | "unknown";
+
+export type TimeFragmentationProfile = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  observedBlocks?: number | null;
+  interruptionCount?: number | null;
+  longestContinuousBlock?: string | null;
+  fragmentationStatus: TimeFragmentationStatus;
+  evidenceBasis: string;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+};
+
+export type DayTimeProfile = {
+  id: string;
+  entryId: string;
+  writerId?: string;
+  /** Prefer presentTimeTypes when durations are not verified. */
+  presentTimeTypes: TimeBlockType[];
+  dominantTimeTypes?: TimeBlockType[];
+  institutionalPresence: "present" | "absent" | "unknown";
+  maintenancePresence: "present" | "absent" | "unknown";
+  bodyPresence: "present" | "absent" | "unknown";
+  writingPresence: "present" | "absent" | "unknown";
+  waitingPresence: "present" | "absent" | "unknown";
+  interruptionPresence: "present" | "absent" | "unknown";
+  selfDirectedPresence: "present" | "absent" | "unknown";
+  unknownPresence: "present" | "absent" | "unknown";
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+};
+
+export type UnclassifiedTimeRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  date?: string;
+  description: string;
+  timePrecision?: TimePrecision;
+  activityUnknown: boolean;
+  interpretationOpen: boolean;
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+};
+
+export type WorkType =
+  | "salaried"
+  | "freelance"
+  | "literary"
+  | "administrative"
+  | "insurance"
+  | "legal"
+  | "retail"
+  | "manual"
+  | "other"
+  | "unknown";
+
+export type WorkWritingRelationType =
+  | "sequential"
+  | "overlapping"
+  | "time-conflict"
+  | "body-conflict"
+  | "financial-support"
+  | "institutional-context"
+  | "explicitly-described-conflict"
+  | "unknown";
+
+export type WorkWritingRelation = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  workRecordIds: string[];
+  writingRecordIds: string[];
+  relationType: WorkWritingRelationType;
+  evidenceBasis: string;
+  confidence: "high" | "medium" | "low" | "unknown";
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds?: string[];
+  notes?: string;
+};
+
+export type WritingSession = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  date?: string;
+  startTime?: string | null;
+  endTime?: string | null;
+  duration?: string | null;
+  timePrecision?: TimePrecision;
+  locationId?: string;
+  relatedWorkId?: string;
+  relatedBodyRecordIds?: string[];
+  interruptionIds?: string[];
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type SleepRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  date?: string;
+  sleepStart?: string | null;
+  sleepEnd?: string | null;
+  duration?: string | null;
+  timePrecision?: TimePrecision;
+  interruptionCount?: number | null;
+  sleepDescription?: string;
+  nextDayWorkImpact?: string;
+  writingRelation?: string;
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type PrivacyLevel =
+  | "private"
+  | "semi-private"
+  | "shared"
+  | "public"
+  | "institutional"
+  | "unknown";
+
+export type WritingPlaceRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  placeId?: string;
+  placeType?: string;
+  activityType?: "writing" | "correspondence" | "reading" | "mixed" | "unknown";
+  privacyLevel: PrivacyLevel;
+  interruptionStatus?: "interrupted" | "uninterrupted" | "unknown";
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type InterruptionType =
+  | "family"
+  | "work"
+  | "visitor"
+  | "noise"
+  | "body"
+  | "correspondence"
+  | "institution"
+  | "travel"
+  | "other"
+  | "unknown";
+
+export type InterruptionRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  date?: string;
+  interruptedActivity?: string;
+  interruptionType: InterruptionType;
+  actorIds?: string[];
+  institutionId?: string;
+  duration?: string | null;
+  resumed?: boolean | null;
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type LetterType =
+  | "personal"
+  | "romantic"
+  | "family"
+  | "literary"
+  | "professional"
+  | "institutional"
+  | "unknown";
+
+export type CorrespondenceRecord = {
+  id: string;
+  writerId: string;
+  date?: string;
+  senderId?: string;
+  recipientId?: string;
+  sourceId?: string;
+  letterType: LetterType;
+  sentStatus?: "sent" | "unsent" | "draft" | "unknown";
+  relatedEntryIds?: string[];
+  topicTags?: string[];
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type WritingSystemType =
+  | "literary"
+  | "employment"
+  | "correspondence"
+  | "diary"
+  | "publication"
+  | "institutional"
+  | "other";
+
+export type WritingSystemProfile = {
+  id: string;
+  writerId: string;
+  systemType: WritingSystemType;
+  institutionId?: string;
+  audienceType?: string;
+  compensationType?: string;
+  obligationLevel?: "high" | "medium" | "low" | "unknown";
+  editorialControl?: string;
+  archivalStatus?: string;
+  relatedRecordIds?: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type TimeControlProfile = {
+  writerId: string;
+  paidWorkControl: "high" | "medium" | "low" | "unknown";
+  familyControl: "high" | "medium" | "low" | "unknown";
+  institutionalControl: "high" | "medium" | "low" | "unknown";
+  bodyControl: "high" | "medium" | "low" | "unknown";
+  selfDirectedTime: "high" | "medium" | "low" | "unknown";
+  unknownTime: "high" | "medium" | "low" | "unknown";
+  evidenceBasis: string;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+};
 
 export type RetailRecord = {
   id: string;
@@ -2173,6 +2719,10 @@ export type WaitingRecord = {
   relatedPerformanceId?: string;
   bodyContext?: string;
   paidStatus?: "paid" | "unpaid" | "unknown";
+  waitingFor?: string;
+  canLeave?: boolean | null;
+  attentionRequired?: boolean | null;
+  reschedulingPossible?: boolean | null;
   evidenceLevel: "explicit" | "implied" | "contextual" | "unknown";
   verificationStatus: VerificationStatus | "partial" | "indexing";
   sourceIds: string[];
@@ -4620,3 +5170,306 @@ export type SocialRecordCollection = {
   notes?: string;
 };
 
+
+// ---------------------------------------------------------------------------
+// Publishing / Network + Administration / Public Life (Woolf · Pepys layers)
+// Existing PublishingRecord (manuscript submission) is preserved separately.
+// ---------------------------------------------------------------------------
+
+export type PublishingActivityType =
+  | "drafting"
+  | "revision"
+  | "editing"
+  | "proofreading"
+  | "typesetting"
+  | "printing"
+  | "publishing"
+  | "distribution"
+  | "promotion"
+  | "review"
+  | "rights"
+  | "correspondence"
+  | "accounting"
+  | "other"
+  | "unknown";
+
+/** Literary publishing labor steps — distinct from manuscript PublishingRecord. */
+export type PublishingActivityRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  date?: string;
+  workId?: string;
+  publicationId?: string;
+  publishingActivityType: PublishingActivityType;
+  relatedPersonIds?: string[];
+  relatedOrganizationIds?: string[];
+  relatedCorrespondenceIds?: string[];
+  moneyRecordIds?: string[];
+  sourceIds: string[];
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type LiteraryNetworkRelationType =
+  | "friend"
+  | "editor"
+  | "publisher"
+  | "writer"
+  | "reviewer"
+  | "collaborator"
+  | "reader"
+  | "family"
+  | "intellectual-peer"
+  | "business"
+  | "other"
+  | "unknown";
+
+/** Network as infrastructure — not a celebrity graph. Source before relation. */
+export type LiteraryNetworkRelation = {
+  id: string;
+  writerId: string;
+  relatedPersonId: string;
+  relationType: LiteraryNetworkRelationType;
+  startDate?: string;
+  endDate?: string;
+  relatedWorkIds?: string[];
+  correspondenceIds?: string[];
+  meetingRecordIds?: string[];
+  publishingRecordIds?: string[];
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type MeetingPurpose =
+  | "literary"
+  | "publishing"
+  | "social"
+  | "family"
+  | "political"
+  | "business"
+  | "reading"
+  | "meal"
+  | "mixed"
+  | "unknown";
+
+export type MeetingRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  date?: string;
+  participantIds?: string[];
+  placeId?: string;
+  purpose: MeetingPurpose;
+  duration?: string | null;
+  relatedWorkIds?: string[];
+  publishingRecordIds?: string[];
+  correspondenceIds?: string[];
+  sourceIds: string[];
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type ReadingType =
+  | "leisure"
+  | "review"
+  | "research"
+  | "editorial"
+  | "manuscript"
+  | "rereading"
+  | "other"
+  | "unknown";
+
+export type ReadingRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  date?: string;
+  workId?: string;
+  authorId?: string;
+  readingType: ReadingType;
+  purpose?: string;
+  response?: string;
+  relatedWritingIds?: string[];
+  sourceIds: string[];
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type ReviewSentiment =
+  | "favorable"
+  | "mixed"
+  | "critical"
+  | "descriptive"
+  | "unknown";
+
+export type ReviewRecord = {
+  id: string;
+  workId: string;
+  writerId: string;
+  date?: string;
+  reviewerId?: string;
+  publicationEntityId?: string;
+  sentiment: ReviewSentiment;
+  summary?: string;
+  sourceIds: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type AdministrationActivityType =
+  | "meeting"
+  | "correspondence"
+  | "accounting"
+  | "inspection"
+  | "report"
+  | "appointment"
+  | "negotiation"
+  | "procurement"
+  | "personnel"
+  | "travel"
+  | "record-keeping"
+  | "decision"
+  | "other"
+  | "unknown";
+
+export type AdministrationRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  date?: string;
+  institutionId?: string;
+  activityType: AdministrationActivityType;
+  documentIds?: string[];
+  participantIds?: string[];
+  placeId?: string;
+  moneyRecordIds?: string[];
+  travelRecordIds?: string[];
+  waitingRecordIds?: string[];
+  outcome?: string;
+  sourceIds: string[];
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type PublicEventImpactType =
+  | "schedule-change"
+  | "mobility"
+  | "food"
+  | "work"
+  | "health"
+  | "housing"
+  | "communication"
+  | "money"
+  | "entertainment"
+  | "institutional-response"
+  | "unknown";
+
+/** Connect public events to a day only when Entry evidence confirms impact. */
+export type PublicEventImpactRecord = {
+  id: string;
+  publicEventId: string;
+  writerId: string;
+  entryId?: string;
+  date?: string;
+  impactType: PublicEventImpactType;
+  affectedActivities?: string[];
+  affectedPlaces?: string[];
+  affectedPeople?: string[];
+  evidenceBasis?: string;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type InfrastructureType =
+  | "street"
+  | "river"
+  | "port"
+  | "transport"
+  | "market"
+  | "office"
+  | "theater"
+  | "tavern"
+  | "church"
+  | "medical"
+  | "communication"
+  | "housing"
+  | "other";
+
+export type CityInfrastructureRecord = {
+  id: string;
+  entryId?: string;
+  writerId?: string;
+  infrastructureType: InfrastructureType;
+  entityId?: string;
+  condition?: string;
+  usage?: string;
+  interruption?: string;
+  cost?: string | null;
+  sourceIds: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type EntertainmentType =
+  | "theater"
+  | "music"
+  | "tavern"
+  | "dining"
+  | "social-visit"
+  | "walking"
+  | "reading"
+  | "other";
+
+export type EntertainmentRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  date?: string;
+  entertainmentType: EntertainmentType;
+  venueId?: string;
+  companionIds?: string[];
+  cost?: number | null;
+  currency?: string | null;
+  duration?: string | null;
+  workRelation?: string;
+  sourceIds: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type PublicHealthContextRecord = {
+  id: string;
+  date?: string;
+  location?: string;
+  eventType?: string;
+  institutionalSourceIds?: string[];
+  personalEntryIds?: string[];
+  mobilityImpact?: string;
+  workImpact?: string;
+  householdImpact?: string;
+  healthImpact?: string;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type DisasterContextRecord = {
+  id: string;
+  eventId: string;
+  date?: string;
+  placeIds?: string[];
+  eventType?: string;
+  institutionalSourceIds?: string[];
+  relatedEntryIds?: string[];
+  confirmedImpacts?: string[];
+  unknownImpacts?: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};

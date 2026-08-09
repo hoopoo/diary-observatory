@@ -7,10 +7,13 @@ import { RelatedObservations } from "@/components/RelatedObservations";
 import { Timeline } from "@/components/Timeline";
 import { BukowskiObservatory } from "@/components/writers/BukowskiObservatory";
 import { HayashiObservatory } from "@/components/writers/HayashiObservatory";
+import { KafkaObservatory } from "@/components/writers/KafkaObservatory";
 import { IchiyoObservatory } from "@/components/writers/IchiyoObservatory";
 import { KafuObservatory } from "@/components/writers/KafuObservatory";
 import { NishimuraObservatory } from "@/components/writers/NishimuraObservatory";
+import { PepysObservatory } from "@/components/writers/PepysObservatory";
 import { RoppaObservatory } from "@/components/writers/RoppaObservatory";
+import { WoolfObservatory } from "@/components/writers/WoolfObservatory";
 import {
   getDiariesByWriter,
   getEntitiesByWriter,
@@ -20,11 +23,14 @@ import {
   writers,
 } from "@/data/index";
 import { BUKOWSKI_SLUG } from "@/data/writers/charles-bukowski";
+import { KAFKA_SLUG } from "@/data/writers/franz-kafka";
 import { HAYASHI_SLUG } from "@/data/writers/fumiko-hayashi";
 import { ROPPA_SLUG } from "@/data/writers/furukawa-roppa";
 import { ICHIYO_SLUG } from "@/data/writers/ichiyo-higuchi";
 import { KAFU_SLUG } from "@/data/writers/kafu-nagai";
 import { NISHIMURA_SLUG } from "@/data/writers/kenji-nishimura";
+import { PEPYS_SLUG } from "@/data/writers/samuel-pepys";
+import { WOOLF_SLUG } from "@/data/writers/virginia-woolf";
 import { personJsonLd } from "@/lib/schema";
 import { SITE_NAME, SITE_URL } from "@/lib/site";
 
@@ -126,6 +132,54 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const title = "樋口一葉｜Diary Observatory";
     const description =
       "樋口一葉の日記・自己記録を、創作、家計、家族、商売、住居、食事、身体、出版、都市生活、生活維持の観点から観測する。";
+    return {
+      title: { absolute: title },
+      description,
+      openGraph: {
+        title,
+        description,
+        type: "profile",
+        url: `${SITE_URL}/writers/${slug}`,
+      },
+    };
+  }
+
+  if (slug === KAFKA_SLUG) {
+    const title = "フランツ・カフカ｜Diary Observatory";
+    const description =
+      "フランツ・カフカの日記・手紙・自己記録を、会社員労働、時間、夜の執筆、睡眠、身体、家族、住居、移動、出版、手紙から観測する。";
+    return {
+      title: { absolute: title },
+      description,
+      openGraph: {
+        title,
+        description,
+        type: "profile",
+        url: `${SITE_URL}/writers/${slug}`,
+      },
+    };
+  }
+
+  if (slug === WOOLF_SLUG) {
+    const title = "ヴァージニア・ウルフ｜Diary Observatory";
+    const description =
+      "ヴァージニア・ウルフの日記・自己記録を、創作、読書、編集、出版、手紙、知的ネットワーク、家計、身体、移動、戦時状況から観測する。";
+    return {
+      title: { absolute: title },
+      description,
+      openGraph: {
+        title,
+        description,
+        type: "profile",
+        url: `${SITE_URL}/writers/${slug}`,
+      },
+    };
+  }
+
+  if (slug === PEPYS_SLUG) {
+    const title = "サミュエル・ピープス｜Diary Observatory";
+    const description =
+      "サミュエル・ピープスの日記を、行政実務、仕事、金銭、食事、都市、移動、家庭、娯楽、公共事件、公衆衛生、社会インフラから観測する。";
     return {
       title: { absolute: title },
       description,
@@ -452,6 +506,138 @@ export default async function WriterDetailPage({ params, searchParams }: Props) 
           />
         ))}
         <IchiyoObservatory writer={writer} />
+      </>
+    );
+  }
+
+  if (slug === KAFKA_SLUG) {
+    const alternateNames = [
+      writer.nameJa,
+      ...(writer.alternateNames ?? []),
+    ].filter((name, index, arr) => arr.indexOf(name) === index);
+
+    const jsonLd = [
+      {
+        ...personJsonLd(writer),
+        alternateName: alternateNames,
+        jobTitle: writer.occupations,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        name: "フランツ・カフカ｜Writer Observatory",
+        about: {
+          "@type": "Person",
+          name: writer.name,
+          alternateName: alternateNames,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: SITE_NAME,
+          url: SITE_URL,
+        },
+        mainEntityOfPage: `${SITE_URL}/writers/${slug}`,
+      },
+    ];
+
+    return (
+      <>
+        {jsonLd.map((item, index) => (
+          <script
+            key={index}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+          />
+        ))}
+        <KafkaObservatory writer={writer} />
+      </>
+    );
+  }
+
+  if (slug === WOOLF_SLUG) {
+    const alternateNames = [
+      writer.nameJa,
+      ...(writer.alternateNames ?? []),
+    ].filter((name, index, arr) => arr.indexOf(name) === index);
+
+    const jsonLd = [
+      {
+        ...personJsonLd(writer),
+        alternateName: alternateNames,
+        jobTitle: writer.occupations,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        name: "ヴァージニア・ウルフ｜Writer Observatory",
+        about: {
+          "@type": "Person",
+          name: writer.name,
+          alternateName: alternateNames,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: SITE_NAME,
+          url: SITE_URL,
+        },
+        mainEntityOfPage: `${SITE_URL}/writers/${slug}`,
+      },
+    ];
+
+    return (
+      <>
+        {jsonLd.map((item, index) => (
+          <script
+            key={index}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+          />
+        ))}
+        <WoolfObservatory writer={writer} />
+      </>
+    );
+  }
+
+  if (slug === PEPYS_SLUG) {
+    const alternateNames = [
+      writer.nameJa,
+      ...(writer.alternateNames ?? []),
+    ].filter((name, index, arr) => arr.indexOf(name) === index);
+
+    const jsonLd = [
+      {
+        ...personJsonLd(writer),
+        alternateName: alternateNames,
+        jobTitle: writer.occupations,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        name: "サミュエル・ピープス｜Writer Observatory",
+        about: {
+          "@type": "Person",
+          name: writer.name,
+          alternateName: alternateNames,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: SITE_NAME,
+          url: SITE_URL,
+        },
+        mainEntityOfPage: `${SITE_URL}/writers/${slug}`,
+      },
+    ];
+
+    return (
+      <>
+        {jsonLd.map((item, index) => (
+          <script
+            key={index}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+          />
+        ))}
+        <PepysObservatory writer={writer} />
       </>
     );
   }

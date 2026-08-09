@@ -229,6 +229,18 @@ import {
   SocialDiaryProvenance,
   UnrecordedDayConcept,
 } from "@/components/observations/SnsDiaryPanels";
+import {
+  ControlKindsPanel,
+  CreativeTimeTypes,
+  DayWithoutPercentages,
+  InstitutionalFootprint,
+  MaintenanceTimeVisibility,
+  SevenWriterTimeComparison,
+  TimeObservatoryFramework,
+  TimeOwnershipModel,
+  WhoOwnsDayEpistemic,
+  WhoOwnsDayRelatedLinks,
+} from "@/components/observations/WhoOwnsDayPanels";
 import { LiteraryEvidenceWarning } from "@/components/provenance/LiteraryEvidenceWarning";
 import type { EpistemicKind } from "@/lib/types";
 
@@ -468,6 +480,16 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
     UnrecordedDayConcept,
     SnsDiaryCaseStudies,
     SnsDiaryRepositoryAudit,
+    ControlKindsPanel,
+    CreativeTimeTypes,
+    DayWithoutPercentages,
+    InstitutionalFootprint,
+    MaintenanceTimeVisibility,
+    SevenWriterTimeComparison,
+    TimeObservatoryFramework,
+    TimeOwnershipModel,
+    WhoOwnsDayEpistemic,
+    WhoOwnsDayRelatedLinks,
   };
 }
 

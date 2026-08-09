@@ -510,7 +510,7 @@ export function BackstageEntryCriteria() {
       <p className="mt-4 text-xs text-text-faint">具体的な日付を推測しない。</p>
       <Link
         href="/research/furukawa-roppa-first-entry"
-        className="focus-ring mt-6 inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+        className="focus-ring mt-6 inline-flex cta cta-secondary"
       >
         Open first-entry research workspace
       </Link>

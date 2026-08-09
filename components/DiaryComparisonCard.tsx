@@ -45,7 +45,7 @@ export function DiaryComparisonCard({
 
       <Link
         href={href}
-        className="focus-ring mt-6 inline-flex border border-text bg-text px-4 py-2 text-xs tracking-wide text-bg"
+        className="focus-ring mt-6 inline-flex cta cta-secondary"
       >
         Compare the two diaries
       </Link>

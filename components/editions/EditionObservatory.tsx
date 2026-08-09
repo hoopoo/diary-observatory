@@ -898,7 +898,7 @@ export function EditionObservatory({ edition }: { edition: EditionRecord }) {
                 {s.slug && (
                   <Link
                     href={`/sources/${s.slug}`}
-                    className="focus-ring mt-3 inline-flex border border-text bg-text px-3 py-1.5 text-[0.65rem] text-bg"
+                    className="focus-ring mt-3 inline-flex cta cta-secondary cta-sm"
                   >
                     View source
                   </Link>
@@ -942,7 +942,7 @@ export function EditionObservatory({ edition }: { edition: EditionRecord }) {
             </Link>
             <Link
               href="/research/furukawa-roppa-first-entry"
-              className="focus-ring inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+              className="focus-ring inline-flex cta cta-secondary"
             >
               Open first-entry research
             </Link>

@@ -241,7 +241,7 @@ export function KafuNishimuraObservatory() {
               </p>
               <Link
                 href={card.href}
-                className="focus-ring mt-auto pt-8 inline-flex border border-text bg-text px-4 py-2 text-xs text-bg self-start"
+                className="focus-ring mt-auto pt-8 inline-flex cta cta-secondary self-start"
               >
                 View {card.name}
               </Link>

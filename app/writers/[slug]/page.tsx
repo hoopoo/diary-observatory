@@ -7,6 +7,7 @@ import { RelatedObservations } from "@/components/RelatedObservations";
 import { Timeline } from "@/components/Timeline";
 import { BukowskiObservatory } from "@/components/writers/BukowskiObservatory";
 import { HayashiObservatory } from "@/components/writers/HayashiObservatory";
+import { IchiyoObservatory } from "@/components/writers/IchiyoObservatory";
 import { KafuObservatory } from "@/components/writers/KafuObservatory";
 import { NishimuraObservatory } from "@/components/writers/NishimuraObservatory";
 import { RoppaObservatory } from "@/components/writers/RoppaObservatory";
@@ -21,6 +22,7 @@ import {
 import { BUKOWSKI_SLUG } from "@/data/writers/charles-bukowski";
 import { HAYASHI_SLUG } from "@/data/writers/fumiko-hayashi";
 import { ROPPA_SLUG } from "@/data/writers/furukawa-roppa";
+import { ICHIYO_SLUG } from "@/data/writers/ichiyo-higuchi";
 import { KAFU_SLUG } from "@/data/writers/kafu-nagai";
 import { NISHIMURA_SLUG } from "@/data/writers/kenji-nishimura";
 import { personJsonLd } from "@/lib/schema";
@@ -108,6 +110,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     const title = "古川ロッパ｜Diary Observatory";
     const description =
       "古川ロッパの昭和日記から、舞台、稽古、本番、食事、体重、病気、観客、興行、戦争、映画、ラジオ、人気、晩年を横断して観測する。";
+    return {
+      title: { absolute: title },
+      description,
+      openGraph: {
+        title,
+        description,
+        type: "profile",
+        url: `${SITE_URL}/writers/${slug}`,
+      },
+    };
+  }
+
+  if (slug === ICHIYO_SLUG) {
+    const title = "樋口一葉｜Diary Observatory";
+    const description =
+      "樋口一葉の日記・自己記録を、創作、家計、家族、商売、住居、食事、身体、出版、都市生活、生活維持の観点から観測する。";
     return {
       title: { absolute: title },
       description,
@@ -390,6 +408,50 @@ export default async function WriterDetailPage({ params, searchParams }: Props) 
           />
         ))}
         <RoppaObservatory writer={writer} activeAxis={axis} />
+      </>
+    );
+  }
+
+  if (slug === ICHIYO_SLUG) {
+    const alternateNames = [
+      writer.nameJa,
+      ...(writer.alternateNames ?? []),
+    ].filter((name, index, arr) => arr.indexOf(name) === index);
+
+    const jsonLd = [
+      {
+        ...personJsonLd(writer),
+        alternateName: alternateNames,
+        jobTitle: writer.occupations,
+      },
+      {
+        "@context": "https://schema.org",
+        "@type": "CreativeWork",
+        name: "樋口一葉｜Writer Observatory",
+        about: {
+          "@type": "Person",
+          name: writer.name,
+          alternateName: alternateNames,
+        },
+        publisher: {
+          "@type": "Organization",
+          name: SITE_NAME,
+          url: SITE_URL,
+        },
+        mainEntityOfPage: `${SITE_URL}/writers/${slug}`,
+      },
+    ];
+
+    return (
+      <>
+        {jsonLd.map((item, index) => (
+          <script
+            key={index}
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{ __html: JSON.stringify(item) }}
+          />
+        ))}
+        <IchiyoObservatory writer={writer} />
       </>
     );
   }

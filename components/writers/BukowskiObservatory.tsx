@@ -589,7 +589,7 @@ export function BukowskiObservatory({
         {threeUrbanDiarists.href ? (
           <Link
             href={threeUrbanDiarists.href}
-            className="focus-ring mt-8 inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+            className="focus-ring mt-8 inline-flex cta cta-secondary"
           >
             {threeUrbanDiarists.cta} →
           </Link>

@@ -12,6 +12,7 @@ import { SameDayComparison } from "@/components/SameDayComparison";
 import { SectionHeading } from "@/components/SectionHeading";
 import { SurvivalSummary } from "@/components/SurvivalSummary";
 import { WriterCard } from "@/components/WriterCard";
+import { WriterConditionsRow } from "@/components/WriterConditionsRow";
 import {
   comparisons,
   futureWriters,
@@ -168,11 +169,14 @@ export default function HomePage() {
           <SectionHeading
             eyebrow="Writers"
             title="Writers"
-            titleJa={`初期観測の${writers.length}人`}
-            description={writers.map((w) => w.name).join(" / ")}
-            descriptionJa="日記・日録・書簡・日記的作品に写り込んだ世界を、現在から読み直す。"
+            titleJa="書き手たち"
+            description="Six lives, six different structures of an ordinary day."
+            descriptionJa="六人の生活から、「普通の一日」の異なる構造を見る。"
           />
-          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="mt-6">
+            <WriterConditionsRow />
+          </div>
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
             {writers.map((writer) => (
               <WriterCard key={writer.id} writer={writer} />
             ))}
@@ -194,9 +198,12 @@ export default function HomePage() {
             </Link>
           </p>
           <div className="mt-8 border border-border-soft px-5 py-4">
-            <p className="label">Future subjects</p>
+            <p className="label">Future subjects / research candidates</p>
             <p className="mt-3 text-sm leading-relaxed text-text-faint">
               {futureWriters.join(" · ")}
+            </p>
+            <p className="mt-2 text-xs text-text-faint">
+              Public Writer cards are not created for research candidates.
             </p>
           </div>
         </section>

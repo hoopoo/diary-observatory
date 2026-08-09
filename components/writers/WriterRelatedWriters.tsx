@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { CtaLink } from "@/components/ui/CtaLink";
 
 export function WriterRelatedWriters({
   items,
@@ -24,22 +24,21 @@ export function WriterRelatedWriters({
           <p className="mt-3 text-xs text-text-faint">{item.connection}</p>
           <p className="jp-serif mt-4 flex-1 text-sm text-text-soft">{item.text}</p>
           {item.status === "coming" ? (
-            <Link
-              href={item.href}
-              className="focus-ring mt-6 inline-flex items-center gap-2 border border-border px-3 py-2 text-xs text-text-faint"
-            >
+            <CtaLink href={item.href} variant="ghost" className="mt-6 self-start">
               {item.cta}
-              <span className="border border-border px-1.5 py-0.5 text-[0.6rem]">
+              <span className="ml-2 border border-border px-1.5 py-0.5 text-[0.6rem] text-text-faint">
                 Coming observation
               </span>
-            </Link>
+            </CtaLink>
           ) : (
-            <Link
+            <CtaLink
               href={item.href}
-              className="focus-ring mt-6 inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+              variant="text"
+              arrow
+              className="mt-6 self-start"
             >
               {item.cta}
-            </Link>
+            </CtaLink>
           )}
         </article>
       ))}

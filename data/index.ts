@@ -128,6 +128,11 @@ export {
   ROPPA_WRITER_ID,
 } from "./writers/furukawa-roppa";
 export {
+  ICHIYO_SLUG,
+  ICHIYO_WRITER_ID,
+} from "./writers/ichiyo-higuchi";
+export { retailRecords } from "./retail/registry";
+export {
   CAPTAIN_DIARY_ID,
   CAPTAIN_DIARY_SLUG,
 } from "./diaries/captain-is-out-to-lunch";
@@ -201,6 +206,7 @@ export const futureWriters = [
   "Henry David Thoreau",
   "Virginia Woolf",
   "Franz Kafka",
+  "Samuel Pepys",
   "Sylvia Plath",
   "Anaïs Nin",
   "Cesare Pavese",

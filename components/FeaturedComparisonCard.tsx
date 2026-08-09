@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { CtaLink } from "@/components/ui/CtaLink";
 
 export function FeaturedComparisonCard({
   title,
@@ -19,12 +19,9 @@ export function FeaturedComparisonCard({
       <h2 className="editorial mt-4 text-3xl text-text md:text-4xl">{title}</h2>
       <p className="mt-3 text-sm tracking-wide text-text-faint">{subtitle}</p>
       <p className="editorial mt-6 text-xl text-accent">{description}</p>
-      <Link
-        href={href}
-        className="focus-ring mt-8 inline-flex border border-text bg-text px-5 py-2.5 text-xs tracking-wide text-bg"
-      >
+      <CtaLink href={href} variant="primary" size="md" arrow className="mt-8">
         {cta}
-      </Link>
+      </CtaLink>
     </article>
   );
 }

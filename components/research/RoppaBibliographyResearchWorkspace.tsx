@@ -389,7 +389,7 @@ export function RoppaBibliographyResearchWorkspace() {
               )}
               <Link
                 href={`/editions/${ed.slug}`}
-                className="focus-ring mt-4 inline-flex border border-text bg-text px-3 py-1.5 text-[0.65rem] text-bg"
+                className="focus-ring mt-4 inline-flex cta cta-secondary cta-sm"
               >
                 Open Edition Observatory
               </Link>
@@ -967,7 +967,7 @@ export function RoppaBibliographyResearchWorkspace() {
         </p>
         <Link
           href={FIRST_ENTRY_RESEARCH_URL}
-          className="focus-ring mt-6 inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+          className="focus-ring mt-6 inline-flex cta cta-secondary"
         >
           Open first-entry research workspace
         </Link>

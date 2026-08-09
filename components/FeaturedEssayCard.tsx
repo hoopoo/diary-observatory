@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { CtaLink } from "@/components/ui/CtaLink";
 
 export function FeaturedEssayCard({
   title,
@@ -16,12 +16,9 @@ export function FeaturedEssayCard({
       <p className="label">Featured Essay</p>
       <h2 className="editorial mt-4 text-3xl text-text md:text-4xl">{title}</h2>
       <p className="jp-serif mt-3 text-base text-text-soft">{subtitle}</p>
-      <Link
-        href={href}
-        className="focus-ring mt-8 inline-flex border border-text bg-text px-5 py-2.5 text-xs tracking-wide text-bg"
-      >
+      <CtaLink href={href} variant="text" arrow className="mt-8">
         {cta}
-      </Link>
+      </CtaLink>
     </article>
   );
 }

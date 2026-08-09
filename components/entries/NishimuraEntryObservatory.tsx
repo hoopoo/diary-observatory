@@ -551,7 +551,7 @@ export function NishimuraEntryObservatory({
         </p>
         <Link
           href="/same-day/2011-05-02"
-          className="focus-ring mt-6 inline-block border border-text bg-text px-4 py-2 text-xs tracking-wide text-bg"
+          className="focus-ring mt-6 inline-block cta cta-secondary"
         >
           Open Same Day — May 2, 2011
         </Link>

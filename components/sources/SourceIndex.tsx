@@ -210,7 +210,7 @@ export function SourceIndex() {
                     </dl>
                     <Link
                       href={`/sources/${source.slug}`}
-                      className="focus-ring mt-6 inline-flex self-start border border-text bg-text px-4 py-2 text-xs text-bg"
+                      className="focus-ring mt-6 inline-flex self-start cta cta-secondary"
                     >
                       View source
                     </Link>

@@ -446,7 +446,7 @@ export function KafuEntryObservatory({ entities }: { entities: Entity[] }) {
         </div>
         <Link
           href={parallelNishimura.compareHref}
-          className="focus-ring mt-6 inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+          className="focus-ring mt-6 inline-flex cta cta-secondary"
         >
           Compare Kafū and Nishimura
         </Link>

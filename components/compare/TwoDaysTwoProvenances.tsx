@@ -73,7 +73,7 @@ export function TwoDaysTwoProvenances() {
             </ul>
             <Link
               href={c.href}
-              className="focus-ring mt-5 inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+              className="focus-ring mt-5 inline-flex cta cta-secondary"
             >
               Open day →
             </Link>

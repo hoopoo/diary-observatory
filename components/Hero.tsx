@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { CtaLink } from "@/components/ui/CtaLink";
 import {
   CORE_SENTENCE,
   SITE_EYEBROW,
@@ -53,18 +53,20 @@ export function Hero() {
           </blockquote>
 
           <div className="flex flex-wrap gap-3 pt-2">
-            <Link
+            <CtaLink
               href="/diaries/dancho-tei-nichijo"
-              className="focus-ring border border-text bg-text px-5 py-2.5 text-sm text-bg transition-opacity hover:opacity-85"
+              variant="primary"
+              size="md"
             >
               Explore the diaries
-            </Link>
-            <Link
+            </CtaLink>
+            <CtaLink
               href="/observations/heisei-dancho-tei-nichijo"
-              className="focus-ring border border-border bg-bg-raised/70 px-5 py-2.5 text-sm text-text transition-colors hover:border-text-faint"
+              variant="secondary"
+              size="md"
             >
               View the first observation
-            </Link>
+            </CtaLink>
           </div>
         </div>
       </div>

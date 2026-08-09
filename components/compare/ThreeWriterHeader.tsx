@@ -67,7 +67,7 @@ export function ThreeWriterHeader({
           <p className="jp-serif mt-1 text-sm text-text-soft">{card.taglineJa}</p>
           <Link
             href={card.href}
-            className="focus-ring mt-8 inline-flex border border-text bg-text px-4 py-2.5 text-xs tracking-wide text-bg"
+            className="focus-ring mt-8 inline-flex cta cta-secondary"
           >
             {card.cta}
           </Link>

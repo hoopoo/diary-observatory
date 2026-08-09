@@ -18,7 +18,7 @@ export function AlcoholComparisonCta() {
       <div className="mt-8 flex flex-wrap gap-3">
         <Link
           href="/compare/nishimura-bukowski"
-          className="focus-ring inline-flex border border-text bg-text px-5 py-2.5 text-xs tracking-wide text-bg"
+          className="focus-ring inline-flex cta cta-secondary"
         >
           Open Nishimura and Bukowski
         </Link>

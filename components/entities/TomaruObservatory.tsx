@@ -205,7 +205,7 @@ export function TomaruObservatory({ entity }: { entity: Entity }) {
           {tomaruFragment.entryAvailable ? (
             <Link
               href={tomaruFragment.entryHref}
-              className="focus-ring border border-text bg-text px-3 py-2 text-bg"
+              className="focus-ring cta cta-secondary"
             >
               Entry
             </Link>

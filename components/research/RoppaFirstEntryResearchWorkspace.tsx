@@ -470,7 +470,7 @@ export function RoppaFirstEntryResearchWorkspace() {
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href="/research/furukawa-roppa-bibliography"
-            className="focus-ring inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+            className="focus-ring inline-flex cta cta-secondary"
           >
             Open bibliography workspace
           </Link>

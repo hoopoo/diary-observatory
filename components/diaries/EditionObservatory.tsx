@@ -68,7 +68,7 @@ export function EditionObservatory() {
             </p>
             <Link
               href={`/editions/${ed.slug}`}
-              className="focus-ring mt-4 inline-flex border border-text bg-text px-3 py-1.5 text-[0.65rem] text-bg"
+              className="focus-ring mt-4 inline-flex cta cta-secondary cta-sm"
             >
               Open Edition Observatory
             </Link>

@@ -601,7 +601,7 @@ export function UrbanDiaristsObservatory() {
         </ul>
         <Link
           href={sameDayPossibility.href}
-          className="focus-ring mt-8 inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+          className="focus-ring mt-8 inline-flex cta cta-secondary"
         >
           {sameDayPossibility.cta}
         </Link>

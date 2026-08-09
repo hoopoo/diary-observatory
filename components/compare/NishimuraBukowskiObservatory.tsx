@@ -234,7 +234,7 @@ export function NishimuraBukowskiObservatory() {
               </p>
               <Link
                 href={card.href}
-                className="focus-ring mt-8 inline-flex border border-text bg-text px-5 py-2.5 text-xs tracking-wide text-bg"
+                className="focus-ring mt-8 inline-flex cta cta-secondary"
               >
                 {card.cta}
               </Link>
@@ -636,7 +636,7 @@ export function NishimuraBukowskiObservatory() {
           </div>
           <Link
             href={relatedKafu.href}
-            className="focus-ring mt-6 inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+            className="focus-ring mt-6 inline-flex cta cta-secondary"
           >
             {relatedKafu.cta}
           </Link>

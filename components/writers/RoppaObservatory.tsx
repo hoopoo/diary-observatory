@@ -633,7 +633,7 @@ export function RoppaObservatory({
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             href={fifthCondition.fourHref}
-            className="focus-ring inline-flex border border-text bg-text px-4 py-2.5 text-xs text-bg"
+            className="focus-ring inline-flex cta cta-secondary px-4 py-2.5 text-xs "
           >
             Open Four Urban Lives
           </Link>
@@ -726,7 +726,7 @@ export function RoppaObservatory({
           </Link>
           <Link
             href="/research/furukawa-roppa-first-entry"
-            className="focus-ring inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+            className="focus-ring inline-flex cta cta-secondary"
           >
             Open entry research
           </Link>

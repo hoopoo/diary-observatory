@@ -1,4 +1,4 @@
-import Link from "next/link";
+import { CtaLink } from "@/components/ui/CtaLink";
 
 export function LatestObservationCard({
   title,
@@ -16,12 +16,9 @@ export function LatestObservationCard({
       <p className="label">Latest Observation</p>
       <h2 className="jp-heading mt-4 text-2xl text-text md:text-3xl">{title}</h2>
       <p className="mt-3 text-sm text-text-soft">{subtitle}</p>
-      <Link
-        href={href}
-        className="focus-ring mt-8 inline-flex border border-text bg-text px-5 py-2.5 text-xs tracking-wide text-bg"
-      >
+      <CtaLink href={href} variant="text" arrow className="mt-8">
         {cta}
-      </Link>
+      </CtaLink>
     </article>
   );
 }

@@ -56,7 +56,7 @@ export default function AboutPage() {
         </p>
         <Link
           href="/compare/urban-diarists"
-          className="focus-ring inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+          className="focus-ring inline-flex cta cta-secondary"
         >
           Three Urban Diarists →
         </Link>
@@ -69,7 +69,7 @@ export default function AboutPage() {
         </p>
         <Link
           href="/observations/three-cities-three-speeds"
-          className="focus-ring inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+          className="focus-ring inline-flex cta cta-secondary"
         >
           三つの都市、三つの生活速度 →
         </Link>
@@ -82,7 +82,7 @@ export default function AboutPage() {
         </p>
         <Link
           href="/compare/four-urban-lives"
-          className="focus-ring inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+          className="focus-ring inline-flex cta cta-secondary"
         >
           Four Urban Lives →
         </Link>
@@ -95,7 +95,7 @@ export default function AboutPage() {
         </p>
         <Link
           href="/observations/maintenance-is-not-background"
-          className="focus-ring inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+          className="focus-ring inline-flex cta cta-secondary"
         >
           生活維持は、文学の背景ではない →
         </Link>
@@ -108,7 +108,7 @@ export default function AboutPage() {
         </p>
         <Link
           href="/observations/the-manuscripts-that-were-not-chosen"
-          className="focus-ring inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+          className="focus-ring inline-flex cta cta-secondary"
         >
           選ばれなかった原稿 →
         </Link>
@@ -134,7 +134,7 @@ export default function AboutPage() {
         </p>
         <Link
           href="/provenance"
-          className="focus-ring mt-4 inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+          className="focus-ring mt-4 inline-flex cta cta-secondary"
         >
           Explore provenance →
         </Link>

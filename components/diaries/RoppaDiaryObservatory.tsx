@@ -304,7 +304,7 @@ export function RoppaDiaryObservatory({
         <div className="mt-8 flex flex-wrap gap-3">
           <Link
             href="/research/furukawa-roppa-bibliography"
-            className="focus-ring inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+            className="focus-ring inline-flex cta cta-secondary"
           >
             Open bibliographic research
           </Link>
@@ -1016,7 +1016,7 @@ export function RoppaDiaryObservatory({
           </Link>
           <Link
             href="/research/furukawa-roppa-first-entry"
-            className="focus-ring inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+            className="focus-ring inline-flex cta cta-secondary"
           >
             Open entry research workspace
           </Link>

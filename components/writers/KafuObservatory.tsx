@@ -259,7 +259,7 @@ export function KafuObservatory({
               ) : (
                 <Link
                   href={`/entries/${day.dateSlug}`}
-                  className="focus-ring mt-4 inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+                  className="focus-ring mt-4 inline-flex cta cta-secondary"
                 >
                   {day.dateSlug === "1918-01-01-kafu-nagai"
                     ? "Open excavated day"
@@ -483,7 +483,7 @@ export function KafuObservatory({
         </div>
         <Link
           href={kafuComparison.href}
-          className="focus-ring mt-8 inline-flex border border-text bg-text px-4 py-2 text-xs text-bg"
+          className="focus-ring mt-8 inline-flex cta cta-secondary"
         >
           Compare Kafū and Nishimura
         </Link>

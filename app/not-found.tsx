@@ -10,7 +10,7 @@ export default function NotFound() {
       </p>
       <Link
         href="/"
-        className="focus-ring mt-4 inline-flex w-fit border border-text bg-text px-4 py-2 text-sm text-bg"
+        className="focus-ring mt-4 cta cta-secondary cta-md"
       >
         Back to Diary Observatory
       </Link>

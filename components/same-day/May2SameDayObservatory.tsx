@@ -199,7 +199,7 @@ export function May2SameDayObservatory({ entities }: { entities: Entity[] }) {
 
           <Link
             href={life.entryHref}
-            className="focus-ring mt-8 inline-flex border border-text bg-text px-5 py-2.5 text-xs tracking-wide text-bg"
+            className="focus-ring mt-8 inline-flex cta cta-secondary"
           >
             View this day
           </Link>

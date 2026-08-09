@@ -315,6 +315,8 @@ export type Writer = {
   featuredQuoteNote?: string;
   tagline: string;
   taglineJa: string;
+  /** Differentiating observation axis for this writer — not a character trait. */
+  primaryCondition?: PrimaryCondition;
   chronology: ChronologyItem[];
   diaryWorkIds?: string[];
   letterCollectionIds?: string[];
@@ -331,6 +333,7 @@ export type Writer = {
   bodyRecordIds?: string[];
   foodRecordIds?: string[];
   moneyRecordIds?: string[];
+  retailRecordIds?: string[];
   observationStatus?: string;
   lastUpdated?: string;
   verificationStatus?: VerificationStatus;
@@ -1514,8 +1517,29 @@ export type PrimaryCondition =
   | "media"
   | "labor"
   | "maintenance"
+  | "performance"
+  | "household-economy"
   | "mixed"
   | "unknown";
+
+export type RetailRecord = {
+  id: string;
+  writerId: string;
+  date?: string;
+  businessType?: string;
+  entityId?: string;
+  itemCategory?: string;
+  /** Null when amount is not verified — never treat as 0. */
+  income?: number | null;
+  expenditure?: number | null;
+  currency?: string | null;
+  customerContext?: string;
+  householdRelation?: string;
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
 
 export type UrbanLifeProfile = {
   writerId: string;
@@ -1556,10 +1580,16 @@ export type MaintenanceCategory =
   | "sleep"
   | "health"
   | "money"
+  | "money-management"
   | "movement"
   | "correspondence"
   | "relationship"
   | "care"
+  | "family-care"
+  | "shopping"
+  | "household-management"
+  | "retail-work"
+  | "publishing"
   | "writing-support"
   | "administration"
   | "other";

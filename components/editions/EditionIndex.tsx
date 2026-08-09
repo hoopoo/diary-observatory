@@ -145,7 +145,7 @@ export function EditionIndex() {
                         </dl>
                         <Link
                           href={`/editions/${edition.slug}`}
-                          className="focus-ring mt-6 inline-flex self-start border border-text bg-text px-4 py-2 text-xs text-bg"
+                          className="focus-ring mt-6 inline-flex self-start cta cta-secondary"
                         >
                           View edition
                         </Link>

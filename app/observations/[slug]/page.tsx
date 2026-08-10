@@ -25,6 +25,7 @@ import ScreenshotObsArticle from "@/content/observations/screenshot-is-not-prove
 import SnsDiaryArticle from "@/content/observations/is-social-media-a-diary.mdx";
 import WhoOwnsDayArticle from "@/content/observations/who-owns-the-day.mdx";
 import WorkObsArticle from "@/content/observations/what-did-diarists-do-for-work.mdx";
+import CityObsArticle from "@/content/observations/city-as-operating-system.mdx";
 import HeiseiDanchoArticle from "@/content/observations/heisei-dancho-tei-nichijo.mdx";
 import ThreeCitiesArticle from "@/content/observations/three-cities-three-speeds.mdx";
 import {
@@ -113,6 +114,11 @@ import {
   relatedComingWork,
 } from "@/data/observations/what-did-diarists-do-for-work";
 import {
+  CITY_OBS_SLUG,
+  cityObsMeta,
+  relatedComingCity,
+} from "@/data/observations/city-as-operating-system";
+import {
   THREE_CITIES_SLUG,
   relatedComingForEssay,
   threeCitiesMeta,
@@ -140,6 +146,7 @@ const ARTICLE_BODY: Record<string, ComponentType> = {
   [SNS_DIARY_OBS_SLUG]: SnsDiaryArticle,
   [WHO_OWNS_DAY_SLUG]: WhoOwnsDayArticle,
   [WORK_OBS_SLUG]: WorkObsArticle,
+  [CITY_OBS_SLUG]: CityObsArticle,
 };
 
 export function generateStaticParams() {
@@ -184,6 +191,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
                                   ? "一日は、誰のものなのか｜Diary Observatory"
                                   : slug === WORK_OBS_SLUG
                                     ? "日記を書く人は、何を仕事としていたのか｜Diary Observatory"
+                                    : slug === CITY_OBS_SLUG
+                                      ? "都市は、一日のOperating Systemである｜Diary Observatory"
                                   : observation.title;
 
   const description = observation.summary;
@@ -224,6 +233,7 @@ export default async function ObservationDetailPage({ params }: Props) {
   const isSnsDiary = slug === SNS_DIARY_OBS_SLUG;
   const isWhoOwnsDay = slug === WHO_OWNS_DAY_SLUG;
   const isWorkObs = slug === WORK_OBS_SLUG;
+  const isCityObs = slug === CITY_OBS_SLUG;
   const Body = ARTICLE_BODY[observation.slug];
   const writers = observation.writerIds
     .map((id) => getWriterById(id))
@@ -327,7 +337,9 @@ export default async function ObservationDetailPage({ params }: Props) {
 
         <header className="mt-6 border-b border-border pb-10">
           <p className="label">
-            {isWorkObs
+            {isCityObs
+              ? cityObsMeta.axisLabel
+              : isWorkObs
               ? workObsMeta.axisLabel
               : isWhoOwnsDay
               ? whoOwnsDayMeta.axisLabel
@@ -506,6 +518,31 @@ export default async function ObservationDetailPage({ params }: Props) {
                 <dt className="label">Last updated</dt>
                 <dd className="mt-1 text-text-soft">
                   {screenshotObsMeta.lastUpdated}
+                </dd>
+              </div>
+            </dl>
+          ) : isCityObs ? (
+            <dl className="mt-8 grid gap-3 text-xs text-text-faint sm:grid-cols-2">
+              <div className="sm:col-span-2">
+                <dt className="label">Themes</dt>
+                <dd className="mt-1 text-text-soft">{cityObsMeta.themes}</dd>
+              </div>
+              <div>
+                <dt className="label">Article status</dt>
+                <dd className="mt-1 text-text-soft">
+                  {cityObsMeta.articleStatus}
+                </dd>
+              </div>
+              <div>
+                <dt className="label">Verification status</dt>
+                <dd className="mt-1 text-text-soft">
+                  {cityObsMeta.verificationStatus}
+                </dd>
+              </div>
+              <div>
+                <dt className="label">Last updated</dt>
+                <dd className="mt-1 text-text-soft">
+                  {cityObsMeta.lastUpdated}
                 </dd>
               </div>
             </dl>
@@ -1885,6 +1922,55 @@ export default async function ObservationDetailPage({ params }: Props) {
         )}
 
 
+        {isCityObs && (
+          <>
+            <section className="my-14">
+              <h2 className="editorial text-2xl text-text">Related pages</h2>
+              <ul className="mt-6 space-y-3">
+                {[
+                  ["/writers", "Writers", "Nine writers"],
+                  ["/entities", "Entities", "Places and institutions"],
+                  ["/writers/kafu-nagai", "Writer", "Kafū Nagai"],
+                  ["/writers/samuel-pepys", "Writer", "Samuel Pepys"],
+                  ["/writers/virginia-woolf", "Writer", "Virginia Woolf"],
+                  [
+                    "/observations/what-did-diarists-do-for-work",
+                    "Published",
+                    "日記を書く人は、何を仕事としていたのか",
+                  ],
+                  [
+                    "/observations/who-owns-the-day",
+                    "Published",
+                    "一日は、誰のものなのか",
+                  ],
+                  [
+                    "/observations/maintenance-is-not-background",
+                    "Published",
+                    "生活維持は、文学の背景ではない",
+                  ],
+                  [
+                    "/observations/the-house-that-remained",
+                    "Published",
+                    "残った家、消えた部屋",
+                  ],
+                  ["/about", "About", "Methodology"],
+                ].map(([href, label, title]) => (
+                  <li key={href}>
+                    <Link
+                      href={href}
+                      className="focus-ring block border border-border px-4 py-4 hover:border-text-faint"
+                    >
+                      <p className="label">{label}</p>
+                      <p className="editorial mt-2 text-xl">{title}</p>
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </section>
+            <ComingObservations items={relatedComingCity} />
+          </>
+        )}
+
         {isWorkObs && (
           <>
             <section className="my-14">
@@ -1945,6 +2031,11 @@ export default async function ObservationDetailPage({ params }: Props) {
                   ["/writers/ichiyo-higuchi", "Writer", "Ichiyō Higuchi"],
                   ["/writers/fumiko-hayashi", "Writer", "Fumiko Hayashi"],
                   ["/writers/furukawa-roppa", "Writer", "Roppa Furukawa"],
+                  [
+                    "/observations/city-as-operating-system",
+                    "Published",
+                    "都市は、一日のOperating Systemである",
+                  ],
                   [
                     "/observations/what-did-diarists-do-for-work",
                     "Published",

@@ -328,6 +328,11 @@ export const pepysResearchQueue: WriterResearchQueueItem[] = [
 
 export const relatedObservations = [
   {
+    href: "/observations/city-as-operating-system",
+    title: "都市は、一日のOperating Systemである",
+    note: "Featured · Administration turns the city into a working network.",
+  },
+  {
     href: "/observations/what-did-diarists-do-for-work",
     title: "日記を書く人は、何を仕事としていたのか",
     note: "Featured · Institutional work beside private diary.",

@@ -74,11 +74,12 @@ export const observationAxes: ObservationAxis[] = [
     href: "/observations/the-house-that-remained",
   },
   {
-    id: "people",
-    label: "People",
-    labelJa: "人",
-    question: "Is this person still alive?",
-    questionJa: "人は今も生きているか",
+    id: "city",
+    label: "City",
+    labelJa: "都市",
+    question: "What urban systems make an ordinary day possible?",
+    questionJa: "普通の一日を可能にする都市の仕組みは何か。",
+    href: "/observations/city-as-operating-system",
   },
   {
     id: "places",
@@ -86,6 +87,14 @@ export const observationAxes: ObservationAxis[] = [
     labelJa: "場所",
     question: "Do the shop, building, or street still remain?",
     questionJa: "店、建物、街は今も残っているか",
+    href: "/observations/city-as-operating-system",
+  },
+  {
+    id: "people",
+    label: "People",
+    labelJa: "人",
+    question: "Is this person still alive?",
+    questionJa: "人は今も生きているか",
   },
   {
     id: "body",

@@ -152,6 +152,14 @@ export {
   WORK_OBS_SLUG,
 } from "./observations/what-did-diarists-do-for-work";
 export {
+  CITY_OBS_ID,
+  CITY_OBS_SLUG,
+} from "./observations/city-as-operating-system";
+export {
+  urbanFunctionProfiles,
+  cityOsLayers,
+} from "./urban/registry";
+export {
   workRecords,
   archiveBiasProfiles,
 } from "./work/registry";

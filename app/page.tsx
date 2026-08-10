@@ -98,6 +98,15 @@ export default function HomePage() {
 
         <section>
           <LatestObservationCard
+            title="CITY AS OPERATING SYSTEM"
+            subtitle="都市は、一日のOperating Systemである — 住居、職場、店、劇場、出版社、行政、交通が生活を動かす"
+            href="/observations/city-as-operating-system"
+            cta="Read observation"
+          />
+        </section>
+
+        <section>
+          <LatestObservationCard
             title="WHAT DID DIARISTS DO FOR WORK?"
             subtitle="日記を書く人は、何を仕事としていたのか — 創作の外側にある、給与、家計、行政、出版、上演"
             href="/observations/what-did-diarists-do-for-work"

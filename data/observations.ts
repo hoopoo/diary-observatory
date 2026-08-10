@@ -113,9 +113,78 @@ import {
   workObsLead,
   workObsSources,
 } from "./observations/what-did-diarists-do-for-work";
+import {
+  CITY_OBS_ID,
+  CITY_OBS_SLUG,
+  cityObsLead,
+  cityObsSources,
+} from "./observations/city-as-operating-system";
 import type { Observation } from "@/lib/types";
 
 export const observations: Observation[] = [
+  {
+    id: CITY_OBS_ID,
+    slug: CITY_OBS_SLUG,
+    title: "都市は、一日のOperating Systemである",
+    subtitle: "住居、職場、店、劇場、出版社、行政、交通が生活を動かす",
+    titleEn: "The City Is an Operating System for the Day",
+    subtitleEn:
+      "Housing, work, shops, theaters, publishers, administration, and transport shape ordinary life",
+    summary:
+      "荷風、西村賢太、Bukowski、林芙美子、古川ロッパ、樋口一葉、Kafka、Virginia Woolf、Samuel Pepysの記録から、住居、職場、交通、店、出版社、劇場、行政、病院、食事など、都市インフラが普通の一日をどう成立させるかを観測する。",
+    summaryJa:
+      "荷風、西村賢太、Bukowski、林芙美子、古川ロッパ、樋口一葉、Kafka、Virginia Woolf、Samuel Pepysの記録から、住居、職場、交通、店、出版社、劇場、行政、病院、食事など、都市インフラが普通の一日をどう成立させるかを観測する。",
+    lead: cityObsLead,
+    contentPath: CITY_OBS_SLUG,
+    writerIds: [
+      "writer-kafu",
+      "writer-nishimura",
+      "writer-bukowski",
+      "writer-hayashi",
+      "writer-roppa",
+      "writer-ichiyo",
+      "writer-kafka",
+      "writer-woolf",
+      "writer-pepys",
+    ],
+    diaryEntryIds: [],
+    diaryWorkIds: [],
+    entityIds: [],
+    themes: [
+      "City",
+      "Urban Life",
+      "Infrastructure",
+      "Movement",
+      "Housing",
+      "Work",
+      "Transport",
+      "Publishing",
+      "Performance",
+      "Administration",
+      "Maintenance",
+    ],
+    periodObserved: "Cross-writer / research-stage city observatory",
+    observationStatus: "Published",
+    publishedAt: "2026-08-10",
+    updatedAt: "2026-08-10",
+    language: "ja",
+    featured: true,
+    workRecordIds: [],
+    housingRecordIds: [],
+    moneyRecordIds: [],
+    publishingRecordIds: [],
+    performanceRecordIds: [],
+    maintenanceEventIds: [],
+    relatedObservationIds: [
+      WORK_OBS_ID,
+      WHO_OWNS_DAY_OBS_ID,
+      "obs-maintenance-is-not-background",
+      "obs-backstage-is-not-recorded",
+      "obs-the-house-that-remained",
+    ],
+    verificationStatus: "partial",
+    sources: cityObsSources,
+  },
   {
     id: WORK_OBS_ID,
     slug: WORK_OBS_SLUG,
@@ -169,6 +238,7 @@ export const observations: Observation[] = [
     performanceRecordIds: [],
     maintenanceEventIds: [],
     relatedObservationIds: [
+      "obs-city-as-operating-system",
       WHO_OWNS_DAY_OBS_ID,
       "obs-maintenance-is-not-background",
       "obs-backstage-is-not-recorded",

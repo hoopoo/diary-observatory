@@ -356,6 +356,11 @@ export const woolfResearchQueue: WriterResearchQueueItem[] = [
 
 export const relatedObservations = [
   {
+    href: "/observations/city-as-operating-system",
+    title: "都市は、一日のOperating Systemである",
+    note: "Featured · City as infrastructure for ordinary days.",
+  },
+  {
     href: "/observations/what-did-diarists-do-for-work",
     title: "日記を書く人は、何を仕事としていたのか",
     note: "Featured · Occupation / Activity / Income across nine writers.",

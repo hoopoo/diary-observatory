@@ -5702,3 +5702,417 @@ export type WorkEvidenceProfile = {
   verificationStatus: VerificationStatus | "partial" | "indexing";
   notes?: string;
 };
+
+// ---------------------------------------------------------------------------
+// Urban observatory — City as Operating System layers
+// ---------------------------------------------------------------------------
+
+export type CityLayerType =
+  | "housing"
+  | "mobility"
+  | "work"
+  | "commerce"
+  | "publishing"
+  | "performance"
+  | "administration"
+  | "healthcare"
+  | "food"
+  | "communication"
+  | "social"
+  | "maintenance"
+  | "public-event"
+  | "leisure"
+  | "unknown";
+
+export type UrbanAccessCondition =
+  | "open"
+  | "restricted"
+  | "appointment"
+  | "membership"
+  | "employee-only"
+  | "private"
+  | "public"
+  | "ticketed"
+  | "unknown";
+
+export type UrbanFunctionProfile = {
+  entityId: string;
+  cityLayerTypes: CityLayerType[];
+  functionTypes?: string[];
+  writerIds: string[];
+  relatedEntryIds?: string[];
+  accessConditions?: UrbanAccessCondition[];
+  openingContext?: string;
+  costContext?: string;
+  temporalContext?: string;
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type HomeBaseProfile = {
+  writerId: string;
+  housingRecordId?: string;
+  entityId?: string;
+  relatedWorkplaceIds?: string[];
+  relatedPublisherIds?: string[];
+  relatedPerformanceVenueIds?: string[];
+  relatedShopIds?: string[];
+  relatedHealthcareIds?: string[];
+  movementRecordIds?: string[];
+  accessStatus?: string;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type CommuteStatus =
+  | "confirmed"
+  | "probable"
+  | "occasional"
+  | "remote"
+  | "unknown";
+
+export type WorkplaceRelation = {
+  id: string;
+  writerId: string;
+  workRecordId?: string;
+  workplaceEntityId?: string;
+  homeEntityId?: string;
+  movementRecordIds?: string[];
+  commuteStatus: CommuteStatus;
+  travelCostRecordIds?: string[];
+  waitingRecordIds?: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type MovementMode =
+  | "walk"
+  | "rail"
+  | "tram"
+  | "bus"
+  | "carriage"
+  | "automobile"
+  | "bicycle"
+  | "boat"
+  | "taxi"
+  | "other"
+  | "unknown";
+
+export type MobilityCapabilityRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  movementMode: MovementMode;
+  originEntityId?: string;
+  destinationEntityId?: string;
+  purposeTypes?: string[];
+  costRecordIds?: string[];
+  accessConstraints?: string[];
+  delayStatus?: string;
+  bodyConstraints?: string;
+  institutionalConstraints?: string;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type CommerceType =
+  | "retail"
+  | "food"
+  | "books"
+  | "household"
+  | "fuel"
+  | "clothing"
+  | "pharmacy"
+  | "market"
+  | "restaurant"
+  | "other"
+  | "unknown";
+
+export type CommerceNodeRecord = {
+  id: string;
+  entityId?: string;
+  writerId: string;
+  entryId?: string;
+  commerceType: CommerceType;
+  purchasedItems?: string[];
+  soldItems?: string[];
+  moneyRecordIds?: string[];
+  foodRecordIds?: string[];
+  maintenanceEventIds?: string[];
+  relationshipType?: string;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type PublishingLocationRole =
+  | "publisher-office"
+  | "editorial-office"
+  | "printer"
+  | "bookseller"
+  | "distribution"
+  | "meeting-place"
+  | "residence"
+  | "correspondence-only"
+  | "unknown";
+
+export type PublishingLocationRecord = {
+  id: string;
+  publishingRecordId?: string;
+  entityId?: string;
+  locationRole: PublishingLocationRole;
+  relatedWriterIds?: string[];
+  movementRecordIds?: string[];
+  correspondenceIds?: string[];
+  moneyRecordIds?: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type ManuscriptMovementRecord = {
+  id: string;
+  workId?: string;
+  writerId: string;
+  date?: string;
+  fromEntityId?: string;
+  toEntityId?: string;
+  movementMethod?: string;
+  carrierActorId?: string;
+  publishingRecordId?: string;
+  sourceIds: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type VenueFunctionProfile = {
+  entityId: string;
+  performanceIds?: string[];
+  rehearsalIds?: string[];
+  waitingIds?: string[];
+  audienceIds?: string[];
+  foodRecordIds?: string[];
+  moneyRecordIds?: string[];
+  bodyRecordIds?: string[];
+  administrationRecordIds?: string[];
+  cityLayerTypes: CityLayerType[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type AdministrationLocationRole =
+  | "office"
+  | "meeting-site"
+  | "inspection-site"
+  | "port"
+  | "court"
+  | "residence"
+  | "public-building"
+  | "other"
+  | "unknown";
+
+export type AdministrationLocationRecord = {
+  id: string;
+  administrationRecordId?: string;
+  institutionId?: string;
+  entityId?: string;
+  locationRole: AdministrationLocationRole;
+  movementRecordIds?: string[];
+  waitingRecordIds?: string[];
+  participantIds?: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type HealthcareAccessRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  healthcareEntityId?: string;
+  bodyRecordIds?: string[];
+  movementRecordIds?: string[];
+  waitingRecordIds?: string[];
+  moneyRecordIds?: string[];
+  appointmentStatus?: string;
+  treatmentStatus?: string;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type AccessCostType =
+  | "transport"
+  | "admission"
+  | "rent"
+  | "food"
+  | "healthcare"
+  | "publishing"
+  | "performance"
+  | "other";
+
+export type AccessCostRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  entityId?: string;
+  accessType: AccessCostType;
+  moneyRecordIds?: string[];
+  movementRecordIds?: string[];
+  requiredCost?: number | null;
+  currency?: string | null;
+  paymentVerified: boolean;
+  accessOutcome?: string;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type EncounterType =
+  | "family"
+  | "literary"
+  | "business"
+  | "administrative"
+  | "performance"
+  | "social"
+  | "accidental"
+  | "medical"
+  | "other";
+
+export type EncounterRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  participantIds?: string[];
+  entityId?: string;
+  encounterType: EncounterType;
+  plannedStatus?: string;
+  movementRecordIds?: string[];
+  relatedWorkIds?: string[];
+  relatedPublishingIds?: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type WaitingNodeProfile = {
+  entityId: string;
+  waitingRecordIds?: string[];
+  waitingTypes?: string[];
+  institutionalRelation?: string;
+  movementRelation?: string;
+  paidStatus?: PaidStatus;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type UrbanInterruptionRelation = {
+  id: string;
+  interruptionId?: string;
+  entityId?: string;
+  cityLayerType: CityLayerType;
+  sourceType?: string;
+  affectedActivity?: string;
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type UrbanSystemDisruptionRecord = {
+  id: string;
+  publicEventId?: string;
+  cityId?: string;
+  dateRange?: string;
+  affectedLayerTypes?: CityLayerType[];
+  affectedEntityIds?: string[];
+  affectedWriterIds?: string[];
+  confirmedEntryIds?: string[];
+  sourceIds: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type UrbanLifePhase = {
+  id: string;
+  writerId: string;
+  startDate?: string;
+  endDate?: string;
+  homeEntityIds?: string[];
+  primaryWorkEntityIds?: string[];
+  recurringEntityIds?: string[];
+  mobilityPatterns?: string[];
+  infrastructureDependencies?: string[];
+  sourceCoverage?: string;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type UrbanEntityRoleType =
+  | "home"
+  | "workplace"
+  | "publisher"
+  | "shop"
+  | "venue"
+  | "office"
+  | "hospital"
+  | "restaurant"
+  | "meeting-place"
+  | "transit-node"
+  | "leisure"
+  | "institution"
+  | "other"
+  | "unknown";
+
+export type UrbanEntityRole = {
+  id: string;
+  entityId: string;
+  writerId: string;
+  roleTypes: UrbanEntityRoleType[];
+  dateRange?: string;
+  relatedEntryIds?: string[];
+  relatedRecordIds?: string[];
+  sourceIds: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type CityVersion = {
+  id: string;
+  cityId: string;
+  dateRange?: string;
+  transportContext?: string;
+  housingContext?: string;
+  publishingContext?: string;
+  institutionalContext?: string;
+  entertainmentContext?: string;
+  healthContext?: string;
+  sourceIds: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type EntityStateRecord = {
+  id: string;
+  entityId: string;
+  dateRange?: string;
+  name?: string;
+  location?: string;
+  function?: string;
+  operationalStatus?: string;
+  sourceIds: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type UrbanSupportRelation = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  supportType?: string;
+  infrastructureEntityId?: string;
+  actorIds?: string[];
+  affectedActivityIds?: string[];
+  evidenceStatus?: string;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};

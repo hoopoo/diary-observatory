@@ -98,9 +98,9 @@ export const observationAxes: ObservationAxis[] = [
     id: "work",
     label: "Work",
     labelJa: "仕事",
-    question: "Work and livelihood before and after becoming a writer",
-    questionJa: "作家になる前後の仕事と生活",
-    href: "/observations/before-the-platform-small-press",
+    question: "What work made an ordinary day possible?",
+    questionJa: "普通の一日を成立させていた仕事は何か。",
+    href: "/observations/what-did-diarists-do-for-work",
   },
   {
     id: "media",

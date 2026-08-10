@@ -147,6 +147,14 @@ export {
   WHO_OWNS_DAY_OBS_ID,
   WHO_OWNS_DAY_SLUG,
 } from "./observations/who-owns-the-day";
+export {
+  WORK_OBS_ID,
+  WORK_OBS_SLUG,
+} from "./observations/what-did-diarists-do-for-work";
+export {
+  workRecords,
+  archiveBiasProfiles,
+} from "./work/registry";
 export { retailRecords } from "./retail/registry";
 export {
   primaryConditionDefinitions,

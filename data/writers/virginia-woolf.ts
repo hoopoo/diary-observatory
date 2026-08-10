@@ -356,6 +356,11 @@ export const woolfResearchQueue: WriterResearchQueueItem[] = [
 
 export const relatedObservations = [
   {
+    href: "/observations/what-did-diarists-do-for-work",
+    title: "日記を書く人は、何を仕事としていたのか",
+    note: "Featured · Occupation / Activity / Income across nine writers.",
+  },
+  {
     href: "/observations/where-did-the-editor-go",
     title: "編集者はどこへ行ったのか",
     note: "Publishing systems and editorial contact as daily structure.",

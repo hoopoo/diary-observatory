@@ -417,6 +417,11 @@ export const kafkaResearchQueue: WriterResearchQueueItem[] = [
 
 export const relatedObservations = [
   {
+    href: "/observations/what-did-diarists-do-for-work",
+    title: "日記を書く人は、何を仕事としていたのか",
+    note: "Featured · Employment, writing occupation, and income separation.",
+  },
+  {
     href: "/observations/who-owns-the-day",
     title: "一日は、誰のものなのか",
     note: "Featured · Time ownership across work, family, body, and writing.",

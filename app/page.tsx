@@ -98,6 +98,15 @@ export default function HomePage() {
 
         <section>
           <LatestObservationCard
+            title="WHAT DID DIARISTS DO FOR WORK?"
+            subtitle="日記を書く人は、何を仕事としていたのか — 創作の外側にある、給与、家計、行政、出版、上演"
+            href="/observations/what-did-diarists-do-for-work"
+            cta="Read observation"
+          />
+        </section>
+
+        <section>
+          <LatestObservationCard
             title="一日は、誰のものなのか"
             subtitle="会社、家族、身体、創作に分割される24時間"
             href="/observations/who-owns-the-day"

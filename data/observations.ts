@@ -107,9 +107,76 @@ import {
   whoOwnsDayLead,
   whoOwnsDaySources,
 } from "./observations/who-owns-the-day";
+import {
+  WORK_OBS_ID,
+  WORK_OBS_SLUG,
+  workObsLead,
+  workObsSources,
+} from "./observations/what-did-diarists-do-for-work";
 import type { Observation } from "@/lib/types";
 
 export const observations: Observation[] = [
+  {
+    id: WORK_OBS_ID,
+    slug: WORK_OBS_SLUG,
+    title: "日記を書く人は、何を仕事としていたのか",
+    subtitle: "創作の外側にある、給与、家計、行政、出版、上演",
+    titleEn: "What Did Diarists Do for Work?",
+    subtitleEn:
+      "Salary, household economy, administration, publishing, and performance beyond writing",
+    summary:
+      "荷風、西村賢太、Bukowski、林芙美子、古川ロッパ、樋口一葉、Kafka、Virginia Woolf、Samuel Pepysの記録から、給与労働、創作、出版、行政、上演、家計、生活維持など、一日を成立させた複数の仕事を観測する。",
+    summaryJa:
+      "荷風、西村賢太、Bukowski、林芙美子、古川ロッパ、樋口一葉、Kafka、Virginia Woolf、Samuel Pepysの記録から、給与労働、創作、出版、行政、上演、家計、生活維持など、一日を成立させた複数の仕事を観測する。",
+    lead: workObsLead,
+    contentPath: WORK_OBS_SLUG,
+    writerIds: [
+      "writer-kafu",
+      "writer-nishimura",
+      "writer-bukowski",
+      "writer-hayashi",
+      "writer-roppa",
+      "writer-ichiyo",
+      "writer-kafka",
+      "writer-woolf",
+      "writer-pepys",
+    ],
+    diaryEntryIds: [],
+    diaryWorkIds: [],
+    entityIds: [],
+    themes: [
+      "Work",
+      "Labor",
+      "Occupation",
+      "Writing",
+      "Money",
+      "Administration",
+      "Publishing",
+      "Performance",
+      "Household Economy",
+      "Maintenance",
+      "Time",
+    ],
+    periodObserved: "Cross-writer / research-stage work observatory",
+    observationStatus: "Published",
+    publishedAt: "2026-08-10",
+    updatedAt: "2026-08-10",
+    language: "ja",
+    featured: true,
+    workRecordIds: [],
+    moneyRecordIds: [],
+    publishingRecordIds: [],
+    performanceRecordIds: [],
+    maintenanceEventIds: [],
+    relatedObservationIds: [
+      WHO_OWNS_DAY_OBS_ID,
+      "obs-maintenance-is-not-background",
+      "obs-backstage-is-not-recorded",
+      "obs-the-price-of-an-ordinary-day",
+    ],
+    verificationStatus: "partial",
+    sources: workObsSources,
+  },
   {
     id: WHO_OWNS_DAY_OBS_ID,
     slug: WHO_OWNS_DAY_SLUG,
@@ -155,6 +222,7 @@ export const observations: Observation[] = [
     language: "ja",
     featured: true,
     relatedObservationIds: [
+      "obs-what-did-diarists-do-for-work",
       "obs-maintenance-is-not-background",
       "obs-the-price-of-an-ordinary-day",
       "obs-backstage-is-not-recorded",

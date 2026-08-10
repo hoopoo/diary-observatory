@@ -2142,7 +2142,11 @@ export type MaintenanceCategory =
 
 export type PaidStatus =
   | "paid"
+  | "salaried"
+  | "fee-based"
+  | "household-income"
   | "unpaid"
+  | "reciprocal"
   | "self-maintenance"
   | "institutionally-supported"
   | "gifted"
@@ -5470,6 +5474,231 @@ export type DisasterContextRecord = {
   relatedEntryIds?: string[];
   confirmedImpacts?: string[];
   unknownImpacts?: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+// ---------------------------------------------------------------------------
+// Work observatory — Occupation / Activity / Income layers
+// ---------------------------------------------------------------------------
+
+export type OccupationLabel =
+  | "author"
+  | "employee"
+  | "administrator"
+  | "performer"
+  | "publisher"
+  | "editor"
+  | "retailer"
+  | "journalist"
+  | "household-manager"
+  | "freelancer"
+  | "official"
+  | "other"
+  | "unknown";
+
+export type WritingWorkType =
+  | "private-writing"
+  | "literary-writing"
+  | "commissioned-writing"
+  | "editorial-writing"
+  | "administrative-writing"
+  | "correspondence"
+  | "review-writing"
+  | "diary-writing"
+  | "commercial-writing"
+  | "unknown";
+
+export type WorkClass =
+  | "paid-employment"
+  | "freelance"
+  | "literary"
+  | "publishing"
+  | "performance"
+  | "administration"
+  | "household-economy"
+  | "retail"
+  | "maintenance"
+  | "care"
+  | "correspondence"
+  | "unpaid-support"
+  | "self-directed-production"
+  | "unknown";
+
+export type WorkIdentityProfile = {
+  writerId: string;
+  occupationLabels: OccupationLabel[];
+  /** Free-text labels from Writer registration — not day-level Facts. */
+  knownOccupationNotes?: string[];
+  indexedWorkTypes: WorkType[];
+  workClasses: WorkClass[];
+  incomeSourceTypes: string[];
+  unpaidWorkTypes: string[];
+  institutionalRoles: string[];
+  selfDirectedRoles: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type SalariedWorkProfile = {
+  writerId: string;
+  workRecordIds: string[];
+  employerIds: string[];
+  timeOwnershipRecordIds: string[];
+  moneyRecordIds: string[];
+  commuteRecordIds: string[];
+  bodyRecordIds: string[];
+  indexedEntryIds: string[];
+  /** True only when at least one WorkRecord of salaried type is indexed. */
+  salariedPresenceIndexed: boolean;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type LiteraryIncomeType =
+  | "royalty"
+  | "manuscript-fee"
+  | "advance"
+  | "prize"
+  | "review-fee"
+  | "serialization"
+  | "rights"
+  | "unknown";
+
+export type LiteraryIncomeRelation = {
+  id: string;
+  writerId: string;
+  moneyRecordId: string;
+  relatedWorkId?: string;
+  publishingRecordId?: string;
+  incomeType: LiteraryIncomeType;
+  paymentTiming?: string;
+  householdUse?: string;
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type HiddenLaborActivityType =
+  | "preparation"
+  | "waiting"
+  | "coordination"
+  | "correspondence"
+  | "travel"
+  | "recovery"
+  | "maintenance"
+  | "research"
+  | "bookkeeping"
+  | "scheduling"
+  | "networking"
+  | "other";
+
+export type HiddenLaborRecord = {
+  id: string;
+  writerId: string;
+  entryId?: string;
+  relatedPrimaryWorkId?: string;
+  activityType: HiddenLaborActivityType;
+  visibility?: "visible" | "partial" | "invisible" | "unknown";
+  paidStatus: PaidStatus;
+  actorIds?: string[];
+  evidenceLevel: EvidenceLevel;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  sourceIds: string[];
+  notes?: string;
+};
+
+export type MultiRoleDayProfile = {
+  entryId: string;
+  writerId: string;
+  roleTypes: string[];
+  roleSequence?: string[];
+  overlappingRoles?: string[];
+  paidRoleIds?: string[];
+  unpaidRoleIds?: string[];
+  unknownRoleIds?: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type WorkFootprintProfile = {
+  workRecordId: string;
+  paidWork?: string | null;
+  preparation?: string | null;
+  commute?: string | null;
+  waiting?: string | null;
+  coordination?: string | null;
+  recovery?: string | null;
+  relatedMaintenance?: string | null;
+  unknownAdjacentTime?: string | null;
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type WorkBodyRelation =
+  | "explicit"
+  | "supported"
+  | "possible"
+  | "unknown";
+
+export type IncomeSourceProfile = {
+  writerId: string;
+  moneyRecordIds: string[];
+  incomeTypes: string[];
+  primaryIncomeType?: string;
+  secondaryIncomeTypes?: string[];
+  dateRange?: string;
+  evidenceCoverage: "none" | "partial" | "documented";
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type WorkSilenceType =
+  | "no-mention"
+  | "sparse-mention"
+  | "episodic-only"
+  | "not-indexed"
+  | "source-gap"
+  | "unknown";
+
+export type WorkSilenceRecord = {
+  id: string;
+  writerId: string;
+  diaryWorkId?: string;
+  dateRange?: string;
+  knownOccupation?: string;
+  indexedWorkMentionCount: number;
+  silenceType: WorkSilenceType;
+  interpretationStatus: "not-asserted" | "hypotheses-only" | "supported";
+  sourceIds: string[];
+  verificationStatus: VerificationStatus | "partial" | "indexing";
+  notes?: string;
+};
+
+export type ArchiveBiasProfile = {
+  id: string;
+  workClass: WorkClass;
+  typicalRecordTypes: string[];
+  visibility: "high" | "medium" | "low" | "variable" | "unknown";
+  institutionalRecording: "common" | "occasional" | "rare" | "unknown";
+  selfRecording: "common" | "occasional" | "rare" | "unknown";
+  financialRecording: "common" | "occasional" | "rare" | "unknown";
+  survivalLikelihood: "high" | "medium" | "low" | "variable" | "unknown";
+  notes?: string;
+};
+
+export type WorkEvidenceProfile = {
+  workRecordId: string;
+  occupationVerified: boolean;
+  activityVerified: boolean;
+  timeVerified: boolean;
+  compensationVerified: boolean;
+  placeVerified: boolean;
+  actorVerified: boolean;
+  bodyImpactVerified: boolean;
+  provenanceCompleteness: "none" | "partial" | "traced";
   verificationStatus: VerificationStatus | "partial" | "indexing";
   notes?: string;
 };
